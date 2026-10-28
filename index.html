@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<!-- ════════════════════════════════════════════════════════════════
+   RichLife · דף הרשמה לוובינר "מערפל לשליטה כלכלית" · 28.10.26 · עיצוב עצמאי (גרסה 2: קצר, אדום/ירוק). TODO: תאריך/שעה, הטבת לייב, WEBINAR_REGISTER_LINK
+═════════════════════════════════════════════════════════════════ -->
+<html lang="he" dir="rtl">
+<head>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f3f6f3">
+<meta name="robots" content="noindex, nofollow">
+<title>מערפל לשליטה כלכלית · הדרכה חינמית · RichLife</title>
+<meta name="description" content="איך להפסיק לרדוף אחר עוד משכורת בלי לדעת מה קורה עם הכסף שלכם בסוף החודש ולאן הוא הולך, ולהגיע למצב שאתם בונים תוכנית כלכלית לעתיד שלכם שבה הכסף עובד בשבילכם, מייצר עוד כסף, ומאפשר לכם גם ליהנות ממנו, בלי רגשות אשמה">
+<!-- תצוגת שיתוף (וואטסאפ/פייסבוק) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="מערפל לשליטה כלכלית · הדרכה חינמית בלייב">
+<meta property="og:description" content="איך להפסיק לרדוף אחר עוד משכורת בלי לדעת מה קורה עם הכסף שלכם בסוף החודש ולאן הוא הולך, ולהגיע למצב שאתם בונים תוכנית כלכלית לעתיד שלכם שבה הכסף עובד בשבילכם, מייצר עוד כסף, ומאפשר לכם גם ליהנות ממנו, בלי רגשות אשמה">
+<meta property="og:locale" content="he_IL">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💚</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap">
+<script>document.documentElement.classList.add("js")</script>
+<style>
+/* Layout: one short page. Fog-to-clear hero with the audience line first, a red/green "היום ← רוצים" board, 5 compact topics, one dark sign-up band with a mini bio */
+:root {
+  --bg:#f3f6f3; --paper:#ffffff; --ink:#1e2b25; --ink-soft:#56655d; --line:#dfe7e1;
+  --pine:#2f5d46; --pine-deep:#21412f; --sage:#9fc6a9; --mist:#e6ece7;
+  --red:#c1553f; --red-soft:#fbeeea; --green:#2f7d55; --green-soft:#eaf5ee;
+  --font:"Heebo","Assistant","Arial Hebrew",Arial,sans-serif;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--ink); font-family:var(--font); font-size:17px; line-height:1.6; direction:rtl; -webkit-font-smoothing:antialiased; }
+.wrap { max-width:1040px; margin:0 auto; padding-left:max(18px, env(safe-area-inset-left,0px)); padding-right:max(18px, env(safe-area-inset-right,0px)); }
+strong { font-weight:800; }
+
+/* ---------- HERO ---------- */
+.hero { position:relative; overflow:hidden; padding-block:26px 46px; text-align:center;
+  background: radial-gradient(1200px 420px at 50% -80px, #ffffff 0%, rgba(255,255,255,0) 70%), linear-gradient(180deg, #dfe6e1 0%, var(--bg) 100%); }
+.fog { position:absolute; inset:0; pointer-events:none; }
+.fog span { position:absolute; border-radius:50%; filter:blur(60px); opacity:.55; background:#ffffff; animation:drift 18s ease-in-out infinite alternate; }
+.fog span:nth-child(1){ width:420px; height:180px; top:10%; right:-80px; }
+.fog span:nth-child(2){ width:520px; height:200px; top:42%; left:-120px; animation-duration:22s; }
+.fog span:nth-child(3){ width:360px; height:160px; bottom:-40px; right:30%; animation-duration:26s; }
+@keyframes drift { to { transform:translateX(60px) translateY(-14px); } }
+.hero .wrap { position:relative; }
+.for-whom { display:block; max-width:640px; margin-inline:auto; font-size:clamp(17px,2.2vw,21px); line-height:1.6; color:var(--ink); background:rgba(255,255,255,.72); border:1px solid var(--line); border-radius:18px; padding:14px 22px; margin-bottom:26px; backdrop-filter:blur(4px); }
+.r { color:var(--red); font-weight:700; } .g { color:var(--green); font-weight:700; }
+.sub .r, .sub .g, .for-whom .r, .for-whom .g { font-weight:700; }
+.live { display:flex; justify-content:center; align-items:center; gap:8px; font-size:14px; font-weight:700; color:var(--pine-deep); margin-bottom:12px; }
+.live i { width:8px; height:8px; border-radius:50%; background:#3f9d63; box-shadow:0 0 0 0 rgba(63,157,99,.5); animation:pulse 2s infinite; }
+@keyframes pulse { 70% { box-shadow:0 0 0 9px rgba(63,157,99,0); } 100% { box-shadow:0 0 0 0 rgba(63,157,99,0); } }
+h1 { font-size:clamp(40px,7.4vw,76px); line-height:1.02; font-weight:900; letter-spacing:-.02em; margin-bottom:16px; }
+h1 .fogw { position:relative; display:inline-block; }
+h1 .f { color:#8c9b92; filter:blur(1.2px); animation:fogbreath 5s ease-in-out infinite alternate; display:inline-block; }
+@keyframes fogbreath { from { filter:blur(1.5px); opacity:.9; } to { filter:blur(.5px); opacity:1; } }
+h1 .mist { position:absolute; border-radius:50%; background:#fff; filter:blur(14px); opacity:.45; pointer-events:none; }
+h1 .m1 { width:70%; height:38%; top:18%; right:-10%; animation:mistdrift 9s ease-in-out infinite alternate; }
+h1 .m2 { width:55%; height:30%; bottom:8%; left:-6%; opacity:.35; animation:mistdrift 12s ease-in-out infinite alternate-reverse; }
+@keyframes fogbreathsm { from { filter:blur(1px); opacity:.9; } to { filter:blur(.3px); opacity:1; } }
+@keyframes mistdrift { to { transform:translateX(-40%); } }
+h1 .cloud { position:absolute; width:.62em; top:-.3em; right:-.28em; fill:#fff; filter:drop-shadow(0 4px 8px rgba(30,43,37,.10)); animation:cloudfloat 6s ease-in-out infinite alternate; }
+@keyframes cloudfloat { to { transform:translate(.12em,.06em); } }
+h1 .c { color:var(--pine); }
+@keyframes clear { to { filter:blur(0); color:#8a9a90; } }
+.sub { max-width:720px; margin:0 auto 24px; font-size:clamp(17px,2.1vw,20px); line-height:1.65; color:var(--ink-soft); text-wrap:balance; }
+.sub strong { color:var(--ink); }
+/* top audience band + live */
+.whom-band { background:#dbe8df; border-bottom:1px solid #c9dbcf; }
+.whom-band .wrap { padding-block:10px; }
+.whom-band p { text-align:center; font-size:clamp(14px,1.7vw,16px); line-height:1.6; color:var(--ink); max-width:780px; margin:0 auto; text-wrap:balance; }
+.whom-band b { font-weight:800; }
+.whom-band .r { color:#b14a35; font-weight:800; } .whom-band .g { color:#246b47; font-weight:800; }
+.live { flex-direction:row; gap:12px; margin-bottom:14px; }
+.live .laptop { width:70px; height:auto; flex-shrink:0; filter:drop-shadow(0 6px 10px rgba(30,43,37,.15)); }
+.live > span { display:flex; flex-direction:column; align-items:flex-start; line-height:1.3; }
+.live-t { font-size:clamp(17px,2.2vw,20px); font-weight:900; color:var(--ink); }
+.live-d { font-size:14px; font-weight:600; color:var(--ink-soft); }
+.live-tag { animation:livepulse 1.6s ease-in-out infinite; transform-origin:50px 5.5px; }
+@keyframes livepulse { 50% { opacity:.55; } }
+.sub2 .from strong { color:#b14a35; font-weight:800; }
+.sub2 .to { font-weight:500 !important; }
+.sub2 .to strong { color:#1f5d3e; font-weight:800; }
+.sub2 { max-width:720px; margin:0 auto 22px; display:grid; gap:6px; }
+.sub2 p { font-size:clamp(16px,1.9vw,18.5px); line-height:1.6; padding:10px 16px; border-radius:14px; text-wrap:balance; }
+.sub2 .from { color:#8a3b2b; background:var(--red-soft); }
+.sub2 .to { color:#1f4f37; background:var(--green-soft); font-weight:700; }
+.sub2 .ar { color:#9fb0a6; font-size:18px; line-height:1; }
+.btn { display:inline-block; background:linear-gradient(120deg,var(--pine-deep),var(--pine)); color:#fff; font-weight:800; font-size:18px; padding:17px 40px; border-radius:14px; text-decoration:none; box-shadow:0 12px 30px rgba(47,93,70,.32); transition:transform .2s, box-shadow .2s; }
+.btn:hover { transform:translateY(-2px); box-shadow:0 16px 38px rgba(47,93,70,.4); }
+.btn:focus-visible { outline:3px solid var(--red); outline-offset:3px; }
+.when { display:block; margin-top:12px; font-size:14px; color:var(--ink-soft); }
+
+/* ---------- BOARD: היום (אדום) ← רוצים (ירוק) ---------- */
+.board-sec { padding-block:40px 44px; }
+.sec-h { text-align:center; font-size:clamp(25px,3.4vw,34px); font-weight:900; line-height:1.25; margin-bottom:6px; text-wrap:balance; }
+.sec-h .r { color:var(--red); } .sec-h .g { color:var(--green); }
+.sec-p { text-align:center; color:var(--ink-soft); margin-bottom:24px; }
+.board { display:grid; grid-template-columns:1fr 44px 1fr; background:var(--paper); border:1px solid var(--line); border-radius:22px; overflow:hidden; box-shadow:0 20px 50px rgba(30,43,37,.07); }
+.bh { padding:14px 22px; font-weight:800; font-size:15px; display:flex; align-items:center; gap:8px; }
+.bh.now { background:var(--red-soft); color:var(--red); }
+.bh.want { background:var(--green-soft); color:var(--green); }
+.bh.mid { background:linear-gradient(90deg,var(--green-soft),var(--red-soft)); }
+.cell { padding:14px 22px; border-top:1px solid var(--line); font-size:16px; line-height:1.5; display:flex; gap:10px; align-items:flex-start; }
+.cell.now { color:#7b3a2c; background:#fffaf8; }
+.cell.want { color:#1f4f37; font-weight:500; background:#fbfefc; }
+.cell strong { font-weight:800; }
+.cell.now strong { color:var(--red); background:linear-gradient(transparent 62%, rgba(193,85,63,.13) 62%); }
+.cell.want strong { color:var(--green); background:linear-gradient(transparent 62%, rgba(47,125,85,.14) 62%); }
+.cell .ic { flex-shrink:0; width:22px; height:22px; border-radius:50%; display:grid; place-items:center; font-size:12px; font-weight:900; margin-top:1px; }
+.cell.now .ic { background:var(--red); color:#fff; }
+.cell.want .ic { background:var(--green); color:#fff; }
+.arrow { border-top:1px solid var(--line); display:grid; place-items:center; color:#b9c6be; font-size:20px; background:linear-gradient(90deg,#fbfefc,#fffaf8); }
+.m-lbl { display:none; }
+
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; }
+.blk { border-radius:20px; overflow:hidden; border:1px solid var(--line); background:var(--paper); box-shadow:0 16px 40px rgba(30,43,37,.06); }
+.blk-h { padding:14px 20px; font-weight:900; font-size:18px; display:flex; gap:8px; align-items:center; }
+.blk.now .blk-h { background:var(--red); color:#fff; }
+.blk.want .blk-h { background:var(--green); color:#fff; }
+.blk ul { list-style:none; }
+.blk li { display:flex; gap:10px; align-items:flex-start; padding:13px 18px; border-top:1px solid var(--line); font-size:16px; line-height:1.55; }
+.blk li:first-child { border-top:0; }
+.blk.now li { background:#fffaf8; color:#6e3427; }
+.blk.want li { background:#fbfefc; color:#1f4f37; }
+.blk .ic { flex-shrink:0; width:20px; height:20px; border-radius:50%; display:grid; place-items:center; font-size:11px; font-weight:900; color:#fff; margin-top:3px; }
+.blk.now .ic { background:var(--red); } .blk.want .ic { background:var(--green); }
+.blk strong { font-weight:700; }
+.blk.now strong { color:var(--red); background:linear-gradient(transparent 62%, rgba(193,85,63,.13) 62%); }
+.blk.want strong { color:var(--green); background:linear-gradient(transparent 62%, rgba(47,125,85,.14) 62%); }
+.turn { display:none; }
+@media (max-width:640px) {
+  .two { grid-template-columns:minmax(0,1fr); gap:0; }
+  .blk li { font-size:15px; padding:12px 14px; }
+  .turn { display:block; text-align:center; font-weight:900; font-size:19px; color:var(--green); padding:18px 0 12px; }
+  .blk-h { font-size:17px; }
+}
+/* ---------- TOPICS ---------- */
+.learn { padding-block:40px 44px; background:linear-gradient(180deg,#dde8e0 0%,#d6e3da 100%); border-block:1px solid #cddbd1; }
+.learn .topic { box-shadow:0 8px 22px rgba(30,43,37,.06); }
+.learn .topic-now { background:#ffffff; border-color:#cfe0d4; }
+.topics { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px; }
+.topics > .topic { grid-column:span 2; }
+.topics > .topic:nth-child(4) { grid-column:2 / span 2; }
+.why-now { text-align:center; max-width:720px; margin:0 auto 20px; color:var(--ink-soft); text-wrap:balance; }
+.why-now small { font-size:13px; }
+.topic .res { margin-top:8px; font-size:13.5px; font-weight:700; color:var(--green); background:var(--green-soft); border-radius:10px; padding:6px 10px; }
+.topic { background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:16px 14px 18px; }
+.topic-now { grid-column:1 / -1; background:var(--green-soft); border-color:#cfe6d8; display:grid; grid-template-columns:30px 1fr; gap:4px 14px; align-items:start; }
+.topic-now .n { margin:0; background:#fff; }
+.topic-now h3 { color:var(--pine-deep); font-size:17px; }
+.topic .n { width:30px; height:30px; border-radius:50%; background:var(--mist); color:var(--pine); font-weight:900; display:grid; place-items:center; margin-bottom:10px; font-size:15px; }
+.topic h3 { font-size:16px; line-height:1.4; font-weight:800; margin-bottom:6px; }
+.topic p { font-size:14.5px; line-height:1.5; color:var(--ink-soft); }
+.learn-tail { text-align:center; max-width:700px; margin:20px auto 0; font-weight:700; color:var(--pine-deep); text-wrap:balance; }
+
+/* ---------- PROOF ---------- */
+.proof { padding-block:40px 44px; }
+.proof-sub { text-align:center; color:var(--ink-soft); margin-bottom:18px; }
+.vids, .shots { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px; scrollbar-width:thin; }
+.vid { all:unset; cursor:pointer; position:relative; flex:0 0 168px; aspect-ratio:9/16; border-radius:18px; overflow:hidden; scroll-snap-align:start; box-shadow:0 12px 28px rgba(30,43,37,.14); background:#1e2b25; }
+.vid img, .vid iframe { width:100%; height:100%; object-fit:cover; display:block; border:0; }
+.vid:focus-visible { outline:3px solid var(--green); outline-offset:3px; }
+.vid .play { position:absolute; inset:0; margin:auto; width:54px; height:54px; border-radius:50%; background:rgba(255,255,255,.92); box-shadow:0 6px 18px rgba(0,0,0,.25); transition:transform .2s; }
+.vid .play::after { content:""; position:absolute; top:50%; left:52%; transform:translate(-50%,-50%); border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent var(--pine); }
+.vid:hover .play { transform:scale(1.08); }
+.vid .vname { position:absolute; bottom:0; inset-inline:0; padding:22px 12px 10px; color:#fff; font-weight:800; font-size:15px; background:linear-gradient(transparent, rgba(0,0,0,.6)); }
+.vid.on .play, .vid.on .vname { display:none; }
+.shots { margin-top:14px; align-items:flex-start; }
+.shot { flex:0 0 260px; margin:0; scroll-snap-align:start; background:#fff; border:1px solid var(--line); border-radius:16px; padding:8px; box-shadow:0 10px 24px rgba(30,43,37,.07); }
+.shot img { width:100%; height:auto; display:block; border-radius:10px; }
+.yt-more { display:block; text-align:center; margin-top:12px; color:var(--pine); font-weight:700; text-decoration:none; }
+.yt-more:hover { text-decoration:underline; }
+@media (min-width:1000px) { .vid { flex-basis:150px; } }
+@media (max-width:640px) { .vid { flex-basis:150px; } .shot { flex-basis:78vw; } }
+.strip { position:relative; }
+.strip + .strip { margin-top:14px; }
+.shots { margin-top:0; }
+.sa { position:absolute; top:50%; transform:translateY(-50%); z-index:3; width:40px; height:40px; border-radius:50%; border:1px solid var(--line); background:#fff; color:var(--pine); font-size:26px; line-height:1; cursor:pointer; box-shadow:0 6px 16px rgba(30,43,37,.15); display:grid; place-items:center; padding-bottom:3px; }
+.sa.prev { right:-14px; } .sa.next { left:-14px; }
+.sa:focus-visible { outline:3px solid var(--green); outline-offset:2px; }
+@media (max-width:640px) { .sa { display:none; } }
+.featured { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+.featured .topic-now { grid-column:auto; }
+.topic h3 { color:var(--pine); }
+.topic-now h3 { color:var(--pine-deep); }
+@media (max-width:640px) { .featured { grid-template-columns:minmax(0,1fr); gap:8px; margin-bottom:8px; } }
+.topic h3 .neg { color:#b14a35; background:linear-gradient(transparent 58%, rgba(193,85,63,.16) 58%); padding:0 2px; }
+.topic h3 mark { background:linear-gradient(transparent 58%, rgba(159,198,169,.55) 58%); color:inherit; padding:0 2px; }
+.calm { margin-top:12px; font-size:15px; color:var(--ink-soft); }
+.idea { padding-block:6px 40px; }
+.idea-q { text-align:center; font-size:clamp(22px,3.2vw,32px); font-weight:900; line-height:1.4; max-width:820px; margin:0 auto; text-wrap:balance; }
+.idea-q .r { color:#b14a35; } .idea-q .g { color:var(--green); }
+.idea-by { text-align:center; margin-top:10px; font-size:14px; font-weight:700; color:var(--ink-soft); letter-spacing:.02em; }
+.think { position:relative; max-width:620px; margin:0 auto; border-radius:22px; overflow:hidden; box-shadow:0 14px 34px rgba(30,43,37,.10); border:1px solid #cddbd1; }
+.think img { display:block; width:100%; height:auto; }
+.think .bubble { position:absolute; top:7%; right:5%; width:46%; background:#fff; color:var(--ink); border-radius:22px; padding:14px 16px; font-size:16px; font-weight:600; line-height:1.5; box-shadow:0 8px 22px rgba(30,43,37,.14); text-wrap:balance; }
+.think .bubble b { color:#b14a35; font-weight:800; }
+.think .dot { position:absolute; background:#fff; border-radius:50%; box-shadow:0 4px 10px rgba(30,43,37,.12); }
+.think .d1 { width:18px; height:18px; top:47%; right:47%; }
+.think .d2 { width:10px; height:10px; top:54%; right:53%; }
+.js .think.rv .bubble { opacity:0; transform:scale(.92); transform-origin:85% 100%; transition:opacity .5s ease .35s, transform .5s ease .35s; }
+.js .think.rv.in .bubble { opacity:1; transform:none; }
+@media (max-width:640px) {
+  .think { border-radius:16px; }
+  .think .bubble { top:5%; right:4%; width:54%; padding:9px 11px; font-size:12.5px; border-radius:14px; }
+  .think .d1 { width:11px; height:11px; top:50%; right:50%; }
+  .think .d2 { width:7px; height:7px; top:56%; right:55%; }
+}
+/* icons */
+.topic .n .ico { width:18px; height:18px; color:var(--pine); }
+.topic-now .n .ico { width:20px; height:20px; }
+.topic .n { transition:transform .25s ease, background .25s; }
+.topic:hover .n { transform:translateY(-3px) rotate(-6deg); background:var(--green-soft); }
+.js .topic.rv .ico * { stroke-dasharray:80; stroke-dashoffset:80; transition:stroke-dashoffset 1.1s ease .2s; }
+.js .topic.rv.in .ico * { stroke-dashoffset:0; }
+.topic-now .hand { transform-origin:12px 12px; animation:tick 6s linear infinite; }
+@keyframes tick { to { transform:rotate(360deg); } }
+.topic p strong { color:var(--pine-deep); font-weight:800; }
+/* ---------- JOIN ---------- */
+.join { background:linear-gradient(160deg,#1d3328 0%, #2a4a39 100%); color:#eef4ef; padding-block:44px; }
+.join-grid { display:grid; grid-template-columns:1.15fr .85fr; gap:30px; align-items:center; }
+.join h2 { font-size:clamp(28px,4vw,40px); font-weight:900; line-height:1.15; margin-bottom:12px; }
+.join h2 span { color:var(--sage); }
+.facts { list-style:none; display:grid; gap:8px; margin:16px 0 22px; }
+.facts li { display:flex; gap:10px; align-items:center; font-size:16.5px; }
+.join .btn { background:#fff; color:var(--pine-deep); box-shadow:0 12px 30px rgba(0,0,0,.25); }
+.join .note { font-size:13.5px; color:#b9cdbf; margin-top:10px; }
+.me { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14); border-radius:20px; padding:20px; display:grid; grid-template-columns:84px 1fr; gap:16px; align-items:center; }
+.me img { width:84px; height:84px; border-radius:50%; object-fit:cover; border:3px solid rgba(159,198,169,.6); }
+.me h3 { font-size:18px; font-weight:800; margin-bottom:4px; }
+.me p { font-size:14.5px; line-height:1.55; color:#d6e3da; }
+
+footer { text-align:center; font-size:13px; color:var(--ink-soft); padding-block:22px 90px; }
+/* floating CTA: always on screen while scrolling */
+body { padding-bottom:92px; }
+.sticky { position:fixed; left:50%; bottom:18px; transform:translateX(-50%); z-index:50; }
+.sticky .btn { display:inline-block; white-space:nowrap; padding:15px 38px; box-shadow:0 12px 28px rgba(30,43,37,.28); animation:ctapulse 2.6s ease-in-out infinite; }
+@keyframes ctapulse { 0%,100% { box-shadow:0 12px 28px rgba(30,43,37,.28), 0 0 0 0 rgba(63,157,99,.45); } 60% { box-shadow:0 12px 28px rgba(30,43,37,.28), 0 0 0 12px rgba(63,157,99,0); } }
+
+/* reveal: visible at rest, gentle lift when JS is on */
+.js .rv { opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease; transition-delay:var(--d,0s); }
+.js .rv.in { opacity:1; transform:none; }
+
+@media (max-width:900px) {
+  .topics { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .topics > .topic, .topics > .topic:nth-child(4) { grid-column:auto; }
+  .topics > .topic:last-child { grid-column:1 / -1; }
+  .join-grid { grid-template-columns:1fr; }
+}
+@media (max-width:640px) {
+  body { font-size:16px; }
+  h1 .f { animation-name:fogbreathsm; }
+  h1 .cloud { top:-.12em; right:-.34em; width:.55em; }
+  h1 .mist { filter:blur(8px); }
+  .hero { padding-block:26px 34px; }
+  .for-whom { padding:12px 16px; margin-bottom:20px; }
+  .board { display:block; border:0; background:none; box-shadow:none; }
+  .bh { display:none; }
+  .pair { background:var(--paper); border:1px solid var(--line); border-radius:16px; overflow:hidden; margin-bottom:10px; }
+  .pair { border-radius:14px; box-shadow:0 6px 18px rgba(30,43,37,.05); }
+  .cell { border-top:0; padding:12px 14px; font-size:15px; line-height:1.55; gap:9px; }
+  .cell.now { padding-bottom:8px; }
+  .cell.want { border-top:0; padding-top:8px; background:var(--green-soft); }
+  .cell .ic { width:18px; height:18px; font-size:10px; margin-top:3px; }
+  .cell strong { font-weight:700; }
+  #a11y-btn { width:40px !important; height:40px !important; font-size:20px !important; left:10px !important; }
+  .arrow { display:none; }
+  .topics { grid-template-columns:minmax(0,1fr); gap:8px; }
+  .topics > .topic:last-child { grid-column:auto; }
+  .topic { display:grid; grid-template-columns:30px 1fr; gap:4px 12px; padding:12px 14px; }
+  .topic .n { margin:0; grid-row:span 2; }
+  body { padding-bottom:84px; }
+  #a11y-btn { bottom:calc(86px + env(safe-area-inset-bottom,0px)) !important; }
+  .sticky { display:block; position:fixed; left:0; right:0; bottom:0; transform:none; z-index:50; padding:10px max(14px, env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(14px, env(safe-area-inset-left,0px)); background:rgba(243,246,243,.94); backdrop-filter:blur(6px); border-top:1px solid var(--line); transition:transform .3s; }
+  .sticky .btn { display:block; text-align:center; padding:15px; }
+}
+/* desktop: pairs flatten into the 3-column grid */
+@media (min-width:641px) { .pair { display:contents; } }
+/* phone: the cards read as one calm list, one emphasis per item */
+@media (max-width:640px) {
+  .featured, .topics { gap:0; background:#fff; border:1px solid #cfe0d4; box-shadow:0 8px 22px rgba(30,43,37,.06); }
+  .featured { margin-bottom:0; border-radius:18px 18px 0 0; border-bottom:0; }
+  .topics { border-radius:0 0 18px 18px; border-top:0; }
+  .learn .topic, .learn .topic-now { background:none; border:0; border-radius:0; box-shadow:none; padding:16px 16px 16px; border-top:1px solid #e6eee8; grid-template-columns:22px 1fr; gap:3px 12px; }
+  .featured .topic:first-child { border-top:0; }
+  .learn .topic .n { width:22px; height:22px; background:none; margin-top:2px; }
+  .learn .topic .n .ico { width:20px; height:20px; color:var(--green); }
+  .learn .topic h3, .learn .topic-now h3 { font-size:16px; line-height:1.45; margin-bottom:4px; }
+  .learn .topic p { font-size:14px; line-height:1.55; }
+  .learn .topic p strong { font-weight:inherit; color:inherit; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .topic.rv .ico * { stroke-dashoffset:0; }
+  *, *::before, *::after { animation:none !important; transition:none !important; }
+  h1 .f { filter:blur(.8px); }
+  .js .rv { opacity:1; transform:none; }
+}
+</style>
+</head>
+<body>
+
+<div class="whom-band"><div class="wrap"><p>לצעירים שמרגישים שהם <b>עובדים קשה</b>, <b>מרוויחים כסף</b>, <span class="r">אבל לא באמת מתקדמים כלכלית</span>, ולא יודעים מה נכון לעשות עם הכסף שלהם כדי <span class="g">לבנות לעצמם עתיד כלכלי בטוח</span></p></div></div>
+<header class="hero">
+ <div class="fog" aria-hidden="true"><span></span><span></span><span></span></div>
+ <div class="wrap">
+  <!-- TODO טלי: תאריך ושעה -->
+  <div class="live"><svg class="laptop" viewBox="0 0 64 44" aria-hidden="true"><rect x="9" y="3" width="46" height="30" rx="3" fill="#fff" stroke="#2f5d46" stroke-width="2.4"/><rect x="14" y="8" width="36" height="20" rx="1.5" fill="#e6f0e9"/><circle cx="32" cy="16" r="4" fill="#9fc6a9"/><path d="M24 27c1.5-4.5 4.5-6.5 8-6.5s6.5 2 8 6.5" fill="#9fc6a9"/><path d="M3 36h58l-3 5H6z" fill="#2f5d46"/><g class="live-tag"><rect x="38" y="0" width="24" height="11" rx="5.5" fill="#d6453a"/><text x="50" y="8.3" text-anchor="middle" font-size="7" font-weight="800" fill="#fff" font-family="Heebo,Arial,sans-serif">LIVE</text></g></svg><span><span class="live-t">🎁 הדרכה חינמית ב-LIVE 🎁</span><span class="live-d">[תאריך ושעה]</span></span></div>
+  <h1><span class="fogw"><span class="f">מערפל</span><span class="mist m1" aria-hidden="true"></span><span class="mist m2" aria-hidden="true"></span><svg class="cloud" viewBox="0 0 64 40" aria-hidden="true"><path d="M18 36h30a12 12 0 0 0 1-24 16 16 0 0 0-30-3A13 13 0 0 0 18 36z"/></svg></span> <span class="c">לשליטה כלכלית</span></h1>
+  <div class="sub2"><p class="from">איך להפסיק <strong>לרדוף אחר עוד משכורת</strong> בלי לדעת מה קורה עם הכסף שלכם בסוף החודש ולאן הוא הולך,</p><div class="ar" aria-hidden="true">↓</div><p class="to">ולהגיע למצב שאתם בונים <strong>תוכנית כלכלית</strong> לעתיד שלכם שבה הכסף <strong>עובד בשבילכם</strong>, מייצר עוד כסף, ומאפשר לכם גם ליהנות ממנו, <strong>בלי רגשות אשמה</strong></p></div>
+ </div>
+</header>
+
+<main>
+<section class="learn">
+ <div class="wrap">
+  <h2 class="sec-h rv" style="margin-bottom:18px">מה מחכה לכם בהדרכה?</h2>
+  <div class="featured">
+   <div class="topic topic-now rv"><div class="n"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path class="hand" d="M12 12V7"/><path d="M12 12l3 2"/></svg></div><div><h3>למה דווקא כשאתם <mark>צעירים ומרוויחים</mark> זה הזמן הכי טוב לבנות יציבות כלכלית?!</h3><p>שלוש סיבות שבגללן השלב שלכם הוא <strong>הכי משתלם</strong> להתחיל בו, ואיך <strong>10 שנים מוקדם יותר</strong> משנות את כל התמונה</p></div></div>
+   <div class="topic topic-now rv"><div class="n"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="15" r="5"/><path d="M9 13v4M7.5 14h2.2a1 1 0 010 2H8"/><path d="M14 10l3-3 3 3"/><path d="M17 7v8"/></svg></div><div><h3>למה דווקא <span class="neg">לא להשקיע</span> זה מה שגורם לכם <mark>להפסיד כסף</mark>?</h3><p>כסף שיושב בעו"ש <strong>מאבד מערכו, בוודאות</strong>. ומה ההבדל לאורך השנים בין כסף שיושב לכסף <strong>שעובד בשבילכם</strong></p></div></div>
+  </div>
+  <div class="topics">
+   <div class="topic rv" style="--d:0.00s"><div class="n"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></div><div><h3>איך לדעת <mark>לאן הכסף שלכם הולך</mark>?</h3><p>החוקים הפשוטים שעושים סדר, ו<strong>הטעות הנפוצה</strong> שגורמת לכסף <strong>להיעלם בלי שתרגישו</strong></p></div></div>
+   <div class="topic rv" style="--d:0.06s"><div class="n"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="2.8"/><path d="M5 6v6c0 1.6 3.1 2.8 7 2.8s7-1.2 7-2.8V6"/><path d="M5 12v6c0 1.6 3.1 2.8 7 2.8s7-1.2 7-2.8v-6"/></svg></div><div><h3>איך לחסוך <mark>כל חודש באופן קבוע</mark>, <span class="neg">בלי להרגיש שאתם מתקמצנים</span> על עצמכם?</h3><p><strong>ליהנות מכל העולמות</strong>: לדאוג לעתיד, וגם ליהנות מבילויים, מסעדות וחופשות</p></div></div>
+   <div class="topic rv" style="--d:0.12s"><div class="n"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M5 16l4-4 3 3 7-7"/><path d="M15 8h4v4"/></svg></div><div><h3>איך להתחיל להשקיע <span class="neg">בלי לפחד להפסיד</span>?</h3><p>מה צריך שיהיה לכם בצד לפני שמתחילים, ו<strong>שתי הטעויות</strong> שעולות הכי ביוקר</p></div></div>
+   <div class="topic rv" style="--d:0.18s"><div class="n"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></div><div><h3>מה חייבים לבדוק <mark>לפני שבוחרים השקעה</mark>?</h3><p>ולמה <strong>אין השקעה אחת שטובה לכולם</strong>, לא משנה כמה אנשים ממליצים עליה</p></div></div>
+   <div class="topic rv" style="--d:0.24s"><div class="n"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></svg></div><div><h3>איך נראית <mark>תוכנית כלכלית אמיתית</mark>?</h3><p>כזו שמראה לכם איך אתם יוצרים לעצמכם <strong>חופש ושקט כלכלי</strong>, מתי תגיעו, ומה הדרך שאתם צריכים לעבור</p></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="board-sec">
+ <div class="wrap">
+  <h2 class="sec-h rv" style="margin-bottom:22px">אם אתם מזדהים עם אחד מהמצבים כאן 👇<br>ההדרכה הזו בשבילכם</h2>
+  <div class="two">
+   <div class="blk now"><div class="blk-h"><span aria-hidden="true">😣</span> איפה אתם היום</div><ul><li class="rv"><span class="ic">✕</span><span>כל חודש <strong>המשכורת נכנסת וישר יוצאת</strong>, בלי שאתם באמת מבינים <strong>לאן היא נעלמה</strong></span></li><li class="rv"><span class="ic">✕</span><span>מתכננים לחסוך את <strong>"מה שנשאר"</strong>, ובסוף <strong>אף פעם לא באמת נשאר</strong></span></li><li class="rv"><span class="ic">✕</span><span><strong>אין לכם כרית ביטחון</strong> להוצאה לא צפויה</span></li><li class="rv"><span class="ic">✕</span><span>השכר עלה, אבל <strong>המצב בבנק לא זז</strong></span></li><li class="rv"><span class="ic">✕</span><span>אולי הצלחתם לחסוך כמה עשרות אלפים שפשוט <strong>"נשחקים" בעו"ש</strong>, ואתם עדיין <strong>דוחים שוב ושוב</strong> את ההחלטה להשקיע, כי אתם <strong>מתים מפחד "להמר"</strong>, לטעות ולהפסיד הכל</span></li><li class="rv"><span class="ic">✕</span><span><strong>אין לכם מושג איך משקיעים</strong>, כמה משקיעים, איפה מתחילים, מה נכון לכם, <strong>הכל נשמע כמו סינית</strong></span></li><li class="rv"><span class="ic">✕</span><span>כל קנייה <strong>מלווה ברגשות אשמה</strong>, ואתם <strong>לא באמת נהנים</strong> מהכסף שאתם מרוויחים</span></li><li class="rv"><span class="ic">✕</span><span>לפני מעבר דירה, רכישת רכב, חתונה, או הרחבת המשפחה, ובמקום להתרגש <strong>אתם בחרדה</strong> שזו תהיה <strong>"קפיצה מעל הפופיק"</strong></span></li></ul></div>
+   <div class="turn" aria-hidden="true">👇</div>
+   <div class="blk want"><div class="blk-h"><span aria-hidden="true">😌</span> מה שאתם באמת רוצים</div><ul><li class="rv"><span class="ic">✓</span><span><strong>לדעת לאן הכסף שלכם הולך</strong> מהרגע שהמשכורת נכנסת, ו<strong>סדר שמתחיל כבר החודש</strong></span></li><li class="rv"><span class="ic">✓</span><span><strong>חיסכון קבוע</strong> שגדל כל חודש</span></li><li class="rv"><span class="ic">✓</span><span><strong>כרית ביטחון</strong>, כך שאף הוצאה לא צפויה לא תפיל אתכם</span></li><li class="rv"><span class="ic">✓</span><span>שהשכר שעלה יתורגם סוף סוף <strong>להתקדמות אמיתית</strong>, ולדעת <strong>שאתם בדרך הנכונה</strong></span></li><li class="rv"><span class="ic">✓</span><span>שהכסף שיושב בעו"ש <strong>יעבוד בשבילכם וייצר עוד כסף</strong></span></li><li class="rv"><span class="ic">✓</span><span><strong>להבין סוף סוף את עולם ההשקעות</strong>, ולקבל החלטה <strong>בביטחון</strong>, כי אתם יודעים מה מתאים לכם</span></li><li class="rv"><span class="ic">✓</span><span><strong>לקנות דברים בכיף</strong>, <strong>בלי רגשות אשמה</strong></span></li><li class="rv"><span class="ic">✓</span><span><strong>להגיע מוכנים כלכלית</strong> למעבר דירה, רכישת רכב, חתונה, או הרחבת המשפחה</span></li></ul></div>
+  </div>
+ </div>
+</section>
+
+<section class="idea">
+ <div class="wrap">
+  <figure class="think rv">
+   <img src="images/thinking.jpg" alt="צעירה יושבת מול מחשב נייד, מניחה את הסנטר על היד וחושבת" loading="lazy" width="1400" height="1050">
+   <figcaption class="bubble">אני מרוויחה כסף, למה אני לא מרגישה שאני מתקדמת כלכלית? <b>בגיל הזה חשבתי שאהיה יותר מסודרת</b></figcaption>
+   <span class="dot d1" aria-hidden="true"></span><span class="dot d2" aria-hidden="true"></span>
+  </figure>
+ </div>
+</section>
+
+<section class="join" id="join">
+ <div class="wrap join-grid">
+  <div>
+   <h2>רוצים לצאת <span>מהערפל?</span></h2>
+   <ul class="facts">
+    <li><span aria-hidden="true">🗓️</span>[תאריך ושעה]</li>
+    <li><span aria-hidden="true">💻</span>בלייב, אונליין, בחינם</li>
+    <!-- TODO טלי: מה ההטבה בפועל? אם אין, למחוק את השורה -->
+    <li><span aria-hidden="true">🎁</span>למי שנשאר עד הסוף: [הטבת הלייב]</li>
+   </ul>
+   <!-- TODO טלי: WEBINAR_REGISTER_LINK -->
+   <a class="btn" id="reg-btn" href="WEBINAR_REGISTER_LINK">שמרו לי מקום</a>
+   <p class="note">את הקישור לשידור תקבלו אחרי ההרשמה.</p>
+  </div>
+  <div class="me">
+   <img src="images/tali-portrait.jpg" alt="טלי בנימינוב שרעבי, RichLife" loading="lazy">
+   <div>
+    <h3>היי, אני טלי</h3>
+    <p>ב-3 השנים האחרונות אני מלווה זוגות ויחידים לשליטה טובה יותר בכסף, חיסכון, השקעות וצמיחה כלכלית. היום, בגיל 27, יש לנו נכסים והשקעות בשווי מעל 1.7 מיליון ש"ח. בלי ירושה, בלי לזכות בלוטו.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="proof" id="proof">
+ <div class="wrap">
+  <h2 class="sec-h rv">ככה זה נשמע <span class="g">אחרי</span></h2>
+  <p class="proof-sub rv">לקוחות מספרים במילים שלהם</p>
+  <div class="strip"><button class="sa prev" type="button" aria-label="הקודם">›</button><button class="sa next" type="button" aria-label="הבא">‹</button><div class="vids"><button class="vid" type="button" data-id="pMuU2DMy2aI" aria-label="לצפות בסרטון של ליעד"><img src="images/yt-pMuU2DMy2aI.jpg" alt="ליעד מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">ליעד</span></button><button class="vid" type="button" data-id="S-4Ngc6gVGs" aria-label="לצפות בסרטון של עדן"><img src="images/yt-S-4Ngc6gVGs.jpg" alt="עדן מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">עדן</span></button><button class="vid" type="button" data-id="IeUfDlJkFwE" aria-label="לצפות בסרטון של נוי וצחי"><img src="images/yt-IeUfDlJkFwE.jpg" alt="נוי וצחי מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">נוי וצחי</span></button><button class="vid" type="button" data-id="RmsxYH6uxlw" aria-label="לצפות בסרטון של ספיר"><img src="images/yt-RmsxYH6uxlw.jpg" alt="ספיר מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">ספיר</span></button><button class="vid" type="button" data-id="HH1ddzPR4nM" aria-label="לצפות בסרטון של עמית"><img src="images/yt-HH1ddzPR4nM.jpg" alt="עמית מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">עמית</span></button><button class="vid" type="button" data-id="8uI0ljFwMqc" aria-label="לצפות בסרטון של זהבה"><img src="images/yt-8uI0ljFwMqc.jpg" alt="זהבה מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">זהבה</span></button><button class="vid" type="button" data-id="X7jQ2De2Tcs" aria-label="לצפות בסרטון של שילת"><img src="images/yt-X7jQ2De2Tcs.jpg" alt="שילת מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">שילת</span></button><button class="vid" type="button" data-id="R-OwwqAO7s8" aria-label="לצפות בסרטון של מירי"><img src="images/yt-R-OwwqAO7s8.jpg" alt="מירי מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">מירי</span></button><button class="vid" type="button" data-id="HyKui2AGlEA" aria-label="לצפות בסרטון של יובל"><img src="images/yt-HyKui2AGlEA.jpg" alt="יובל מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">יובל</span></button></div></div>
+  <div class="strip"><button class="sa prev" type="button" aria-label="הקודם">›</button><button class="sa next" type="button" aria-label="הבא">‹</button><div class="shots"><figure class="shot"><img src="images/proof-01.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-18.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-19.jpg" alt="תגובות של משתתפים בצ׳אט של הדרכה קודמת" loading="lazy"></figure><figure class="shot"><img src="images/proof-07.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-10.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-02.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-13.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-03.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-05.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-04.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-12.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-09.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-17.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-23.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-47.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-16.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-21.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-54a.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-54b.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure></div></div>
+ </div>
+</section>
+
+</main>
+
+<footer>טלי בנימינוב שרעבי · RichLife · ליווי פיננסי, חיסכון והשקעות</footer>
+
+<div class="sticky" id="sticky"><a class="btn" href="#join">שמרו לי מקום בהדרכה</a></div>
+
+<script>
+(function(){
+ var els=document.querySelectorAll('.rv');
+ if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in')}); return; }
+ var o=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); o.unobserve(e.target); } }); },{threshold:.12, rootMargin:'0px 0px -30px 0px'});
+ els.forEach(function(e){ o.observe(e); });
+
+
+ document.querySelectorAll('.strip').forEach(function(st){ var sc=st.querySelector('.vids, .shots'); st.querySelector('.next').addEventListener('click',function(){ sc.scrollBy({left:-sc.clientWidth*0.8,behavior:'smooth'}); }); st.querySelector('.prev').addEventListener('click',function(){ sc.scrollBy({left:sc.clientWidth*0.8,behavior:'smooth'}); }); });
+ document.querySelectorAll('.vid').forEach(function(b){ b.addEventListener('click',function(){ if(b.classList.contains('on')) return; var f=document.createElement('iframe'); f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.id+'?autoplay=1&playsinline=1&rel=0'; f.title=b.getAttribute('aria-label'); f.allow='autoplay; encrypted-media; picture-in-picture'; f.allowFullscreen=true; b.innerHTML=''; b.appendChild(f); b.classList.add('on'); }); });
+})();
+</script>
+
+<!-- ═══ רכיב נגישות RichLife - מוטמע בשני הדפים (מכר + תודה). עצמאי, בלי תלות חיצונית. ═══ -->
+<style>
+/* כפתור + תפריט נגישות */
+#a11y-btn { position: fixed; bottom: 20px; left: 16px; z-index: 998; width: 48px; height: 48px; border-radius: 50%; border: 2px solid #fff; background: #3e5448; color: #fff; font-size: 24px; line-height: 1; cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,.3); display: flex; align-items: center; justify-content: center; }
+#a11y-btn:focus-visible { outline: 3px solid #c1553f; outline-offset: 2px; }
+#a11y-menu { position: fixed; bottom: 78px; left: 16px; z-index: 998; width: 250px; background: #fff; border: 1px solid #d3e0df; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,.25); padding: 14px; display: none; font-family: 'Heebo', Arial, sans-serif; }
+#a11y-menu.open { display: block; }
+#a11y-menu h3 { font-size: 15px; font-weight: 800; color: #1e2b25; margin: 0 0 10px; text-align: right; }
+#a11y-menu button.a11y-opt { display: block; width: 100%; text-align: right; background: #eef4ef; border: 1px solid #d3e0df; border-radius: 10px; padding: 9px 12px; margin-bottom: 6px; font-family: inherit; font-size: 13.5px; font-weight: 600; color: #1e2b25; cursor: pointer; }
+#a11y-menu button.a11y-opt[aria-pressed="true"] { background: #3e5448; color: #fff; border-color: #3e5448; }
+#a11y-menu button.a11y-opt:focus-visible { outline: 3px solid #c1553f; }
+#a11y-menu .a11y-link { display: block; text-align: center; font-size: 12.5px; color: #3e5448; margin-top: 8px; }
+@media (max-width: 880px) { #a11y-btn { bottom: 96px; } #a11y-menu { bottom: 152px; } }
+/* מצבי נגישות */
+html.a11y-bigtext body { zoom: 1.18; }
+html.a11y-bigtext2 body { zoom: 1.35; }
+html.a11y-contrast, html.a11y-contrast img { filter: invert(1) hue-rotate(180deg); }
+html.a11y-contrast img, html.a11y-contrast video { filter: invert(1) hue-rotate(180deg); }
+html.a11y-gray { filter: grayscale(1); }
+html.a11y-links a { text-decoration: underline !important; box-shadow: 0 0 0 2px #c1553f !important; }
+html.a11y-font body, html.a11y-font body * { font-family: Arial, Helvetica, sans-serif !important; }
+html.a11y-noanim *, html.a11y-noanim *::before, html.a11y-noanim *::after { animation: none !important; transition: none !important; }
+html.a11y-cursor, html.a11y-cursor * { cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="black" stroke="white" stroke-width="1.2" d="M5 2l14 12h-8l-2 8z"/></svg>') 4 2, auto !important; }
+/* כיבוד העדפת מערכת להפחתת תנועה */
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+<button id="a11y-btn" aria-label="תפריט נגישות" aria-expanded="false" title="נגישות">&#9855;</button>
+<div id="a11y-menu" role="dialog" aria-label="אפשרויות נגישות">
+ <h3>נגישות</h3>
+ <button class="a11y-opt" data-cls="a11y-bigtext" aria-pressed="false">הגדלת טקסט</button>
+ <button class="a11y-opt" data-cls="a11y-bigtext2" aria-pressed="false">הגדלת טקסט נוספת</button>
+ <button class="a11y-opt" data-cls="a11y-contrast" aria-pressed="false">ניגודיות כהה</button>
+ <button class="a11y-opt" data-cls="a11y-gray" aria-pressed="false">גווני אפור</button>
+ <button class="a11y-opt" data-cls="a11y-links" aria-pressed="false">הדגשת קישורים</button>
+ <button class="a11y-opt" data-cls="a11y-font" aria-pressed="false">פונט קריא</button>
+ <button class="a11y-opt" data-cls="a11y-noanim" aria-pressed="false">עצירת אנימציות</button>
+ <button class="a11y-opt" data-cls="a11y-cursor" aria-pressed="false">סמן גדול</button>
+ <button class="a11y-opt" id="a11y-reset">איפוס נגישות</button>
+ <a class="a11y-link" href="accessibility/">הצהרת נגישות</a>
+</div>
+<script>
+(function(){
+ var KEY = 'richlife-a11y';
+ var root = document.documentElement;
+ var btn = document.getElementById('a11y-btn');
+ var menu = document.getElementById('a11y-menu');
+ var opts = menu.querySelectorAll('.a11y-opt[data-cls]');
+ function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch(e){ return []; } }
+ function save(list){ try { localStorage.setItem(KEY, JSON.stringify(list)); } catch(e){} }
+ function apply(){
+  var on = load();
+  opts.forEach(function(o){
+   var c = o.getAttribute('data-cls'), active = on.indexOf(c) > -1;
+   root.classList.toggle(c, active);
+   o.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+ }
+ btn.addEventListener('click', function(){
+  var open = menu.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if (open) menu.querySelector('.a11y-opt').focus();
+ });
+ document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && menu.classList.contains('open')) { menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.focus(); } });
+ opts.forEach(function(o){
+  o.addEventListener('click', function(){
+   var c = o.getAttribute('data-cls'), on = load(), i = on.indexOf(c);
+   if (i > -1) on.splice(i, 1); else on.push(c);
+   if (c === 'a11y-bigtext') { var j = on.indexOf('a11y-bigtext2'); if (j > -1 && i === -1) on.splice(j, 1); }
+   if (c === 'a11y-bigtext2') { var k = on.indexOf('a11y-bigtext'); if (k > -1 && i === -1) on.splice(k, 1); }
+   save(on); apply();
+  });
+ });
+ document.getElementById('a11y-reset').addEventListener('click', function(){ save([]); apply(); });
+ apply();
+})();
+</script>
+<!-- ═══ סוף רכיב נגישות ═══ -->
+</body>
+</html>
