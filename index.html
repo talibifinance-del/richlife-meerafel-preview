@@ -176,6 +176,23 @@ h1 .c { color:var(--pine); }
 @media (min-width:1000px) { .vid { flex-basis:150px; } }
 @media (max-width:640px) { .vid { flex-basis:150px; } .shot { flex-basis:78vw; } }
 .strip { position:relative; }
+/* screenshots move on their own, two rows in opposite directions; pause on hover/touch */
+.proof { overflow-x:clip; }
+.mq { margin-top:16px; display:grid; gap:14px; direction:ltr; overflow:hidden; width:100vw; margin-inline:calc(50% - 50vw); -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent); mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent); }
+.mq-track { display:flex; align-items:center; width:max-content; animation:mqL 90s linear infinite; }
+.mq-row.r .mq-track { animation-name:mqR; animation-duration:100s; }
+.mq-row:hover .mq-track, .mq-row:active .mq-track { animation-play-state:paused; }
+.mq .shot { flex:0 0 250px; margin:0 14px 0 0; direction:rtl; }
+@keyframes mqL { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@keyframes mqR { from { transform:translateX(-50%); } to { transform:translateX(0); } }
+@media (max-width:640px) { .mq .shot { flex-basis:210px; margin-right:10px; } .mq { gap:10px; } }
+/* scroll pop-ins: cards grow in, pains slide from the right, wishes from the left */
+.js .topic.rv { transform:translateY(22px) scale(.95); transition:opacity .55s ease, transform .55s cubic-bezier(.2,.8,.2,1.15); transition-delay:var(--d,0s); }
+.js .blk.now li.rv { transform:translateX(34px); }
+.js .blk.want li.rv { transform:translateX(-34px); }
+.js .blk li.rv { transition:opacity .5s ease, transform .5s cubic-bezier(.2,.8,.2,1.1); }
+.js .think.rv { transform:scale(.92) translateY(18px); transition:opacity .7s ease, transform .8s cubic-bezier(.2,.8,.2,1.1); }
+.js .rv.in { opacity:1; transform:none; }
 .strip + .strip { margin-top:14px; }
 .shots { margin-top:0; }
 .sa { position:absolute; top:50%; transform:translateY(-50%); z-index:3; width:40px; height:40px; border-radius:50%; border:1px solid var(--line); background:#fff; color:var(--pine); font-size:26px; line-height:1; cursor:pointer; box-shadow:0 6px 16px rgba(30,43,37,.15); display:grid; place-items:center; padding-bottom:3px; }
@@ -211,6 +228,8 @@ h1 .c { color:var(--pine); }
 }
 /* icons */
 .topic .n .ico { width:18px; height:18px; color:var(--pine); }
+.topic .n .emo { font-size:17px; line-height:1; }
+.topic-now .n .emo { font-size:19px; }
 .topic-now .n .ico { width:20px; height:20px; }
 .topic .n { transition:transform .25s ease, background .25s; }
 .topic:hover .n { transform:translateY(-3px) rotate(-6deg); background:var(--green-soft); }
@@ -228,6 +247,51 @@ h1 .c { color:var(--pine); }
 .facts li { display:flex; gap:10px; align-items:center; font-size:16.5px; }
 .join .btn { background:#fff; color:var(--pine-deep); box-shadow:0 12px 30px rgba(0,0,0,.25); }
 .join .note { font-size:13.5px; color:#b9cdbf; margin-top:10px; }
+/* her story: photo beside a real story, milestones in their words */
+.story { padding-block:48px; background:var(--paper); border-top:1px solid var(--line); }
+.story-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:40px; align-items:start; }
+.story-ph { margin:0; position:sticky; top:24px; border-radius:24px; overflow:hidden; box-shadow:0 18px 40px rgba(30,43,37,.14); }
+.story-ph img { display:block; width:100%; height:auto; }
+.story-txt { min-width:0; display:grid; gap:14px; }
+.story-txt .sec-h { text-align:start; margin:0; }
+.story-hi { font-size:18px; font-weight:800; color:var(--pine); }
+.story-txt > p { font-size:17px; line-height:1.75; color:var(--ink); max-width:62ch; }
+.story-txt strong { font-weight:800; }
+.story-txt strong.r { color:#b14a35; } .story-txt strong.g { color:var(--green); }
+.road { display:flex; align-items:center; justify-content:space-around; gap:10px; flex-wrap:nowrap; background:var(--green-soft); border:1px solid #cfe6d8; border-radius:18px; padding:14px 18px; margin-block:4px; }
+.road > div { display:grid; gap:1px; }
+.road .yr { font-size:13px; font-weight:800; color:var(--ink-soft); letter-spacing:.04em; }
+.road b { font-size:22px; font-weight:900; color:var(--ink-soft); font-variant-numeric:tabular-nums; }
+.road .now b { color:var(--green); font-size:26px; }
+.road small { font-size:13px; color:var(--ink-soft); }
+.road i { font-style:normal; font-size:24px; color:var(--green); }
+.grow { background:var(--green-soft); border:1px solid #cfe6d8; border-radius:18px; padding:16px 18px; display:grid; gap:12px; }
+.grow-h { font-size:14px; font-weight:800; color:var(--pine-deep); letter-spacing:.02em; }
+.gr { display:grid; grid-template-columns:44px 1fr; gap:10px; align-items:center; }
+.gy { font-size:14px; font-weight:800; color:var(--ink-soft); font-variant-numeric:tabular-nums; }
+.gt { display:grid; gap:5px; }
+.gb { display:block; height:14px; width:var(--w); min-width:12px; border-radius:999px; background:#b9cdbf; }
+.gr.now .gb { height:20px; background:linear-gradient(90deg,var(--green),#3f9d63); }
+.js .grow.rv .gb { width:12px; transition:width 1.6s cubic-bezier(.2,.8,.2,1) .3s; }
+.js .grow.rv.in .gb { width:var(--w); }
+.gv { font-size:15px; color:var(--ink-soft); line-height:1.4; }
+.gv b { font-size:18px; color:var(--ink); font-variant-numeric:tabular-nums; }
+.gr.now .gv b { font-size:22px; color:var(--green); }
+.story-lead { font-weight:800; color:var(--pine-deep); margin-top:4px; }
+.wins { list-style:none; display:grid; gap:10px; padding:0; margin:0; }
+.wins li { display:grid; grid-template-columns:30px 1fr; gap:10px; align-items:start; background:var(--bg); border-radius:14px; padding:11px 14px; font-size:16px; line-height:1.55; }
+.wins li > span:first-child { font-size:20px; line-height:1.3; }
+.wins strong { color:var(--green); }
+.js .wins li.rv { transform:translateX(-30px); transition:opacity .5s ease, transform .5s cubic-bezier(.2,.8,.2,1.1); }
+.js .blk li.rv.in, .js .wins li.rv.in { opacity:1; transform:none; }
+.join-grid.solo { grid-template-columns:1fr; max-width:640px; text-align:center; }
+.join-grid.solo .facts { justify-content:center; justify-items:center; }
+@media (max-width:760px) {
+  .story-grid { grid-template-columns:1fr; gap:22px; }
+  .story-ph { position:static; max-width:260px; margin-inline:auto; border-radius:20px; }
+  .story-txt > p { font-size:16px; }
+  .road { padding:12px 12px; } .road b { font-size:18px; } .road .now b { font-size:20px; } .road i { font-size:20px; }
+}
 .me { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14); border-radius:20px; padding:20px; display:grid; grid-template-columns:84px 1fr; gap:16px; align-items:center; }
 .me img { width:84px; height:84px; border-radius:50%; object-fit:cover; border:3px solid rgba(159,198,169,.6); }
 .me h3 { font-size:18px; font-weight:800; margin-bottom:4px; }
@@ -288,11 +352,13 @@ body { padding-bottom:92px; }
   .featured .topic:first-child { border-top:0; }
   .learn .topic .n { width:22px; height:22px; background:none; margin-top:2px; }
   .learn .topic .n .ico { width:20px; height:20px; color:var(--green); }
+  .learn .topic .n .emo { font-size:19px; }
   .learn .topic h3, .learn .topic-now h3 { font-size:16px; line-height:1.45; margin-bottom:4px; }
   .learn .topic p { font-size:14px; line-height:1.55; }
   .learn .topic p strong { font-weight:inherit; color:inherit; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .mq-row { overflow-x:auto; }
   .js .topic.rv .ico * { stroke-dashoffset:0; }
   *, *::before, *::after { animation:none !important; transition:none !important; }
   h1 .f { filter:blur(.8px); }
@@ -318,15 +384,15 @@ body { padding-bottom:92px; }
  <div class="wrap">
   <h2 class="sec-h rv" style="margin-bottom:18px">מה מחכה לכם בהדרכה?</h2>
   <div class="featured">
-   <div class="topic topic-now rv"><div class="n"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path class="hand" d="M12 12V7"/><path d="M12 12l3 2"/></svg></div><div><h3>למה דווקא כשאתם <mark>צעירים ומרוויחים</mark> זה הזמן הכי טוב לבנות יציבות כלכלית?!</h3><p>שלוש סיבות שבגללן השלב שלכם הוא <strong>הכי משתלם</strong> להתחיל בו, ואיך <strong>10 שנים מוקדם יותר</strong> משנות את כל התמונה</p></div></div>
-   <div class="topic topic-now rv"><div class="n"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="15" r="5"/><path d="M9 13v4M7.5 14h2.2a1 1 0 010 2H8"/><path d="M14 10l3-3 3 3"/><path d="M17 7v8"/></svg></div><div><h3>למה דווקא <span class="neg">לא להשקיע</span> זה מה שגורם לכם <mark>להפסיד כסף</mark>?</h3><p>כסף שיושב בעו"ש <strong>מאבד מערכו, בוודאות</strong>. ומה ההבדל לאורך השנים בין כסף שיושב לכסף <strong>שעובד בשבילכם</strong></p></div></div>
+   <div class="topic topic-now rv"><div class="n"><span class="emo" aria-hidden="true">⏰</span></div><div><h3>למה דווקא כשאתם <mark>צעירים ומרוויחים</mark> זה הזמן הכי טוב לבנות יציבות כלכלית?!</h3><p>שלוש סיבות שבגללן השלב שלכם הוא <strong>הכי משתלם</strong> להתחיל בו, ואיך <strong>10 שנים מוקדם יותר</strong> משנות את כל התמונה</p></div></div>
+   <div class="topic topic-now rv"><div class="n"><span class="emo" aria-hidden="true">📉</span></div><div><h3>למה דווקא <span class="neg">לא להשקיע</span> זה מה שגורם לכם <mark>להפסיד כסף</mark>?</h3><p>כסף שיושב בעו"ש <strong>מאבד מערכו, בוודאות</strong>. ומה ההבדל לאורך השנים בין כסף שיושב לכסף <strong>שעובד בשבילכם</strong></p></div></div>
   </div>
   <div class="topics">
-   <div class="topic rv" style="--d:0.00s"><div class="n"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></div><div><h3>איך לדעת <mark>לאן הכסף שלכם הולך</mark>?</h3><p>החוקים הפשוטים שעושים סדר, ו<strong>הטעות הנפוצה</strong> שגורמת לכסף <strong>להיעלם בלי שתרגישו</strong></p></div></div>
-   <div class="topic rv" style="--d:0.06s"><div class="n"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="2.8"/><path d="M5 6v6c0 1.6 3.1 2.8 7 2.8s7-1.2 7-2.8V6"/><path d="M5 12v6c0 1.6 3.1 2.8 7 2.8s7-1.2 7-2.8v-6"/></svg></div><div><h3>איך לחסוך <mark>כל חודש באופן קבוע</mark>, <span class="neg">בלי להרגיש שאתם מתקמצנים</span> על עצמכם?</h3><p><strong>ליהנות מכל העולמות</strong>: לדאוג לעתיד, וגם ליהנות מבילויים, מסעדות וחופשות</p></div></div>
-   <div class="topic rv" style="--d:0.12s"><div class="n"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M5 16l4-4 3 3 7-7"/><path d="M15 8h4v4"/></svg></div><div><h3>איך להתחיל להשקיע <span class="neg">בלי לפחד להפסיד</span>?</h3><p>מה צריך שיהיה לכם בצד לפני שמתחילים, ו<strong>שתי הטעויות</strong> שעולות הכי ביוקר</p></div></div>
-   <div class="topic rv" style="--d:0.18s"><div class="n"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></div><div><h3>מה חייבים לבדוק <mark>לפני שבוחרים השקעה</mark>?</h3><p>ולמה <strong>אין השקעה אחת שטובה לכולם</strong>, לא משנה כמה אנשים ממליצים עליה</p></div></div>
-   <div class="topic rv" style="--d:0.24s"><div class="n"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></svg></div><div><h3>איך נראית <mark>תוכנית כלכלית אמיתית</mark>?</h3><p>כזו שמראה לכם איך אתם יוצרים לעצמכם <strong>חופש ושקט כלכלי</strong>, מתי תגיעו, ומה הדרך שאתם צריכים לעבור</p></div></div>
+   <div class="topic rv" style="--d:0.00s"><div class="n"><span class="emo" aria-hidden="true">🔍</span></div><div><h3>איך לדעת <mark>לאן הכסף שלכם הולך</mark>?</h3><p>החוקים הפשוטים שעושים סדר, ו<strong>הטעות הנפוצה</strong> שגורמת לכסף <strong>להיעלם בלי שתרגישו</strong></p></div></div>
+   <div class="topic rv" style="--d:0.06s"><div class="n"><span class="emo" aria-hidden="true">🍹</span></div><div><h3>איך לחסוך <mark>כל חודש באופן קבוע</mark>, <span class="neg">בלי להרגיש שאתם מתקמצנים</span> על עצמכם?</h3><p><strong>ליהנות מכל העולמות</strong>: לדאוג לעתיד, וגם ליהנות מבילויים, מסעדות וחופשות</p></div></div>
+   <div class="topic rv" style="--d:0.12s"><div class="n"><span class="emo" aria-hidden="true">🌱</span></div><div><h3>איך להתחיל להשקיע <span class="neg">בלי לפחד להפסיד</span>?</h3><p>מה צריך שיהיה לכם בצד לפני שמתחילים, ו<strong>שתי הטעויות</strong> שעולות הכי ביוקר</p></div></div>
+   <div class="topic rv" style="--d:0.18s"><div class="n"><span class="emo" aria-hidden="true">🎯</span></div><div><h3>מה חייבים לבדוק <mark>לפני שבוחרים השקעה</mark>?</h3><p>ולמה <strong>אין השקעה אחת שטובה לכולם</strong>, לא משנה כמה אנשים ממליצים עליה</p></div></div>
+   <div class="topic rv" style="--d:0.24s"><div class="n"><span class="emo" aria-hidden="true">🗺️</span></div><div><h3>איך נראית <mark>תוכנית כלכלית אמיתית</mark>?</h3><p>כזו שמראה לכם איך אתם יוצרים לעצמכם <strong>חופש ושקט כלכלי</strong>, מתי תגיעו, ומה הדרך שאתם צריכים לעבור</p></div></div>
   </div>
  </div>
 </section>
@@ -353,9 +419,9 @@ body { padding-bottom:92px; }
 </section>
 
 <section class="join" id="join">
- <div class="wrap join-grid">
+ <div class="wrap join-grid solo">
   <div>
-   <h2>רוצים לצאת <span>מהערפל?</span></h2>
+   <h2>הצעד הראשון <span>לשליטה כלכלית</span> מתחיל כאן</h2>
    <ul class="facts">
     <li><span aria-hidden="true">🗓️</span>[תאריך ושעה]</li>
     <li><span aria-hidden="true">💻</span>בלייב, אונליין, בחינם</li>
@@ -366,13 +432,6 @@ body { padding-bottom:92px; }
    <a class="btn" id="reg-btn" href="WEBINAR_REGISTER_LINK">שמרו לי מקום</a>
    <p class="note">את הקישור לשידור תקבלו אחרי ההרשמה.</p>
   </div>
-  <div class="me">
-   <img src="images/tali-portrait.jpg" alt="טלי בנימינוב שרעבי, RichLife" loading="lazy">
-   <div>
-    <h3>היי, אני טלי</h3>
-    <p>ב-3 השנים האחרונות אני מלווה זוגות ויחידים לשליטה טובה יותר בכסף, חיסכון, השקעות וצמיחה כלכלית. היום, בגיל 27, יש לנו נכסים והשקעות בשווי מעל 1.7 מיליון ש"ח. בלי ירושה, בלי לזכות בלוטו.</p>
-   </div>
-  </div>
  </div>
 </section>
 
@@ -381,7 +440,37 @@ body { padding-bottom:92px; }
   <h2 class="sec-h rv">ככה זה נשמע <span class="g">אחרי</span></h2>
   <p class="proof-sub rv">לקוחות מספרים במילים שלהם</p>
   <div class="strip"><button class="sa prev" type="button" aria-label="הקודם">›</button><button class="sa next" type="button" aria-label="הבא">‹</button><div class="vids"><button class="vid" type="button" data-id="pMuU2DMy2aI" aria-label="לצפות בסרטון של ליעד"><img src="images/yt-pMuU2DMy2aI.jpg" alt="ליעד מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">ליעד</span></button><button class="vid" type="button" data-id="S-4Ngc6gVGs" aria-label="לצפות בסרטון של עדן"><img src="images/yt-S-4Ngc6gVGs.jpg" alt="עדן מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">עדן</span></button><button class="vid" type="button" data-id="IeUfDlJkFwE" aria-label="לצפות בסרטון של נוי וצחי"><img src="images/yt-IeUfDlJkFwE.jpg" alt="נוי וצחי מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">נוי וצחי</span></button><button class="vid" type="button" data-id="RmsxYH6uxlw" aria-label="לצפות בסרטון של ספיר"><img src="images/yt-RmsxYH6uxlw.jpg" alt="ספיר מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">ספיר</span></button><button class="vid" type="button" data-id="HH1ddzPR4nM" aria-label="לצפות בסרטון של עמית"><img src="images/yt-HH1ddzPR4nM.jpg" alt="עמית מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">עמית</span></button><button class="vid" type="button" data-id="8uI0ljFwMqc" aria-label="לצפות בסרטון של זהבה"><img src="images/yt-8uI0ljFwMqc.jpg" alt="זהבה מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">זהבה</span></button><button class="vid" type="button" data-id="X7jQ2De2Tcs" aria-label="לצפות בסרטון של שילת"><img src="images/yt-X7jQ2De2Tcs.jpg" alt="שילת מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">שילת</span></button><button class="vid" type="button" data-id="R-OwwqAO7s8" aria-label="לצפות בסרטון של מירי"><img src="images/yt-R-OwwqAO7s8.jpg" alt="מירי מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">מירי</span></button><button class="vid" type="button" data-id="HyKui2AGlEA" aria-label="לצפות בסרטון של יובל"><img src="images/yt-HyKui2AGlEA.jpg" alt="יובל מספרים על התהליך" loading="lazy"><span class="play" aria-hidden="true"></span><span class="vname">יובל</span></button></div></div>
-  <div class="strip"><button class="sa prev" type="button" aria-label="הקודם">›</button><button class="sa next" type="button" aria-label="הבא">‹</button><div class="shots"><figure class="shot"><img src="images/proof-01.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-18.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-19.jpg" alt="תגובות של משתתפים בצ׳אט של הדרכה קודמת" loading="lazy"></figure><figure class="shot"><img src="images/proof-07.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-10.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-02.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-13.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-03.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-05.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-04.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-12.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-09.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-17.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-23.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-47.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-16.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-21.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-54a.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-54b.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure></div></div>
+  <div class="mq" aria-label="צילומי מסך של הודעות מלקוחות">
+   <div class="mq-row l"><div class="mq-track"><figure class="shot"><img src="images/proof-01.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-19.jpg" alt="תגובות של משתתפים בצ׳אט של הדרכה קודמת" loading="lazy"></figure><figure class="shot"><img src="images/proof-10.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-13.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-05.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-12.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-17.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-47.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-21.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-54b.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-01.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-19.jpg" alt="" data-alt="תגובות של משתתפים בצ׳אט של הדרכה קודמת" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-10.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-13.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-05.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-12.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-17.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-47.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-21.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-54b.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure></div></div>
+   <div class="mq-row r"><div class="mq-track"><figure class="shot"><img src="images/proof-18.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-07.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-02.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-03.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-04.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-09.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-23.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-16.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot"><img src="images/proof-54a.jpg" alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-18.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-07.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-02.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-03.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-04.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-09.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-23.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-16.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure><figure class="shot" aria-hidden="true"><img src="images/proof-54a.jpg" alt="" data-alt="הודעה שלקוחה שלחה לטלי אחרי הליווי" loading="lazy"></figure></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="story" id="story">
+ <div class="wrap story-grid">
+  <figure class="story-ph rv"><img src="images/tali-portrait.jpg" alt="טלי בנימינוב שרעבי" loading="lazy" width="733" height="1100"></figure>
+  <div class="story-txt">
+   <p class="story-hi rv">היי, אני טלי 👋</p>
+   <h2 class="sec-h rv">ולמה בכלל <span class="g">להקשיב לי?</span></h2>
+   <p class="rv">גדלתי בבית של עולים חדשים, עם הרבה <strong>תחושת מחסור</strong>. השתחררתי מהצבא ישר לתוך משבר משפחתי, ובזמן הקורונה איבדתי את אבא שלי ואת אחי. בלי ירושה ובלי מבוגרים להישען עליהם, הרגשתי <strong class="r">חרדה כלכלית של ממש</strong>.</p>
+   <p class="rv">שם הבנתי שאי אפשר לבנות עתיד על "יהיה בסדר". <strong>אני חייבת לקחת שליטה.</strong> יחד עם דרור, היום בעלי, התחלנו ללמוד הכל על כסף וליישם כל דבר שלמדנו. ומהר מאוד הבנו ש<strong>החסם העיקרי הוא לא כסף, הוא האומץ.</strong></p>
+   <div class="grow rv" role="img" aria-label="ב-2021 היה לנו הון עצמי של 70,000 שקל. ב-2026 יש לנו נכסים והשקעות בשוק ההון ובנדל"ן בשווי כ-1.8 מיליון שקל">
+    <p class="grow-h">המסע שלנו במספרים</p>
+    <div class="gr"><span class="gy">2021</span><div class="gt"><span class="gb" style="--w:4%"></span><span class="gv"><b>70,000 ש"ח</b> הון עצמי, כשהתחלנו</span></div></div>
+    <div class="gr now"><span class="gy">2026</span><div class="gt"><span class="gb" style="--w:100%"></span><span class="gv"><b>כ-1.8 מיליון ש"ח</b> בנכסים והשקעות בשוק ההון ובנדל"ן, היום</span></div></div>
+   </div>
+   <p class="story-lead rv">ככה זה נראה אצלנו היום:</p>
+   <ul class="wins">
+    <li class="rv"><span aria-hidden="true">💰</span><span><strong>חוסכים כל חודש באופן קבוע</strong>, בלי להרגיש שאנחנו מתקמצנים על עצמנו</span></li>
+    <li class="rv"><span aria-hidden="true">📈</span><span><strong>בנינו תיק השקעות</strong>, ויש לנו כמה השקעות נדל"ן, גם בארה"ב</span></li>
+    <li class="rv"><span aria-hidden="true">🧠</span><span><strong>מקבלים החלטות כלכליות חכמות</strong>: לפני כל השקעה אנחנו יודעים מה הסיכונים ומתי צפוי רווח</span></li>
+    <li class="rv"><span aria-hidden="true">🏡</span><span><strong>עברנו דירה</strong>, מוכנים כלכלית ובלי "קפיצה מעל הפופיק"</span></li>
+    <li class="rv"><span aria-hidden="true">💍</span><span><strong>יצאנו מהחתונה בפלוס</strong>, ועם הכסף הזה טסנו לירח דבש בתאילנד ✈️</span></li>
+    <li class="rv"><span aria-hidden="true">👶</span><span><strong>יצאתי לחופשת לידה ארוכה</strong>, בלי לחץ על הכסף</span></li>
+   </ul>
+   <p class="rv">היום, בגיל 27, אני עובדת כי אני בוחרת בשליחות שלי, והכסף כבר לא מקור ללחץ. בשלוש השנים האחרונות אני מלווה זוגות ויחידים לעשות את אותה הדרך. <strong class="g">בלי ירושה, ובלי לזכות בלוטו.</strong></p>
+  </div>
  </div>
 </section>
 
