@@ -95,10 +95,6 @@ h1 .c { color:var(--pine); animation:clearin 1.1s ease-out 1s both; }
 .sub2 .ar { color:#9fb0a6; font-size:18px; line-height:1; }
 .btn { display:inline-block; background:linear-gradient(120deg,var(--pine-deep),var(--pine)); color:#fff; font-weight:800; font-size:18px; padding:17px 40px; border-radius:14px; text-decoration:none; box-shadow:0 12px 30px rgba(47,93,70,.32); transition:transform .2s, box-shadow .2s; }
 .btn:hover { transform:translateY(-2px); box-shadow:0 16px 38px rgba(47,93,70,.4); }
-/* a soft light sweeps across the button every few seconds */
-.btn { position:relative; overflow:hidden; isolation:isolate; }
-.btn::after { content:""; position:absolute; top:0; bottom:0; left:-60%; width:42%; background:linear-gradient(100deg,transparent,rgba(255,255,255,.34),transparent); transform:skewX(-18deg); animation:shine 5s ease-in-out 2s infinite; pointer-events:none; z-index:-1; }
-@keyframes shine { 0% { left:-60%; } 26%,100% { left:130%; } }
 .btn:focus-visible { outline:3px solid var(--red); outline-offset:3px; }
 .when { display:block; margin-top:12px; font-size:14px; color:var(--ink-soft); }
 
@@ -376,40 +372,6 @@ body { padding-bottom:92px; }
 
 /* ---------- MOTION LAYER: on only when html.mfx and not stopped by a11y or the editor ---------- */
 .cu { font-variant-numeric:tabular-nums; }
-/* red turns green: each row is a mirrored pair */
-.flips { max-width:760px; margin-inline:auto; }
-.flips-bar { display:none; }
-.fl { list-style:none; display:grid; gap:10px; }
-.fp { border:1px solid var(--line); border-radius:16px; overflow:hidden; background:var(--paper); box-shadow:0 6px 18px rgba(30,43,37,.05); }
-.fp > div { display:flex; gap:10px; align-items:flex-start; padding:13px 18px; font-size:16px; line-height:1.55; }
-.f-now { background:#fffaf8; color:#6e3427; }
-.f-want { background:var(--green-soft); color:#1f4f37; }
-.fp .ic { flex-shrink:0; width:20px; height:20px; border-radius:50%; display:grid; place-items:center; font-size:11px; font-weight:900; color:#fff; margin-top:3px; }
-.f-now .ic { background:var(--red); } .f-want .ic { background:var(--green); }
-.fp strong { font-weight:700; }
-.f-now strong { color:var(--red); background:linear-gradient(transparent 62%, rgba(193,85,63,.13) 62%); }
-.f-want strong { color:var(--green); background:linear-gradient(transparent 62%, rgba(47,125,85,.14) 62%); }
-@media (min-width:641px) { .fp { display:grid; grid-template-columns:1fr 1fr; } }
-@media (max-width:640px) { .fp > div { font-size:15px; padding:12px 14px; } }
-
-html.mfx:not(.a11y-noanim):not(.pe-on) .flips-bar { display:flex; align-items:center; gap:10px; position:sticky; top:10px; z-index:5; margin:0 auto 14px; width:max-content; max-width:100%; padding:8px 14px; border-radius:999px; background:rgba(255,255,255,.92); backdrop-filter:blur(6px); border:1px solid var(--line); box-shadow:0 8px 22px rgba(30,43,37,.08); font-size:14px; font-weight:800; }
-.fb-now { color:var(--red); } .fb-want { color:var(--green); opacity:.45; transition:opacity .4s; }
-.flips.done .fb-want { opacity:1; }
-.fb-track { width:90px; height:6px; border-radius:99px; background:var(--red-soft); overflow:hidden; }
-.fb-track i { display:block; height:100%; width:calc(var(--p,0) * 100%); margin-inline-start:0; background:linear-gradient(90deg,#3f9d63,var(--green)); border-radius:99px; transition:width .45s ease; }
-html.mfx:not(.a11y-noanim):not(.pe-on) .fp { display:grid; grid-template-columns:1fr; background:#fffaf8; transition:background-color .5s, border-color .5s, box-shadow .5s; }
-html.mfx:not(.a11y-noanim):not(.pe-on) .fp.on { background:var(--green-soft); }
-html.mfx:not(.a11y-noanim):not(.pe-on) .fp > div { background:transparent; }
-html.mfx:not(.a11y-noanim):not(.pe-on) .fp > div { grid-area:1 / 1; align-self:center; transition:opacity .5s ease, transform .55s cubic-bezier(.2,.8,.2,1); }
-html.mfx:not(.a11y-noanim):not(.pe-on) .fp .f-want { opacity:0; transform:translateY(12px); pointer-events:none; }
-html.mfx:not(.a11y-noanim):not(.pe-on) .fp.on .f-now { opacity:0; transform:translateY(-12px); pointer-events:none; }
-html.mfx:not(.a11y-noanim):not(.pe-on) .fp.on .f-want { opacity:1; transform:none; pointer-events:auto; }
-html.mfx:not(.a11y-noanim):not(.pe-on) .fp.on { border-color:#bfdcca; box-shadow:0 8px 22px rgba(47,125,85,.10); }
-html.mfx:not(.a11y-noanim):not(.pe-on) .fp .ic { transition:transform .55s ease; }
-html.mfx:not(.a11y-noanim):not(.pe-on) .fp.on .f-want .ic { animation:popic .5s ease; }
-@keyframes popic { 0% { transform:scale(.4) rotate(-90deg); } 100% { transform:none; } }
-@media (max-width:640px) { html.mfx:not(.a11y-noanim):not(.pe-on) .flips-bar { font-size:12.5px; gap:7px; padding:7px 11px; } .fb-track { width:46px; } }
-
 /* zoom out as the photo scrolls by */
 html.mfx:not(.a11y-noanim):not(.pe-on) .think img { transform:scale(var(--z,1)); transform-origin:62% 58%; will-change:transform; }
 /* typewriter thought */
@@ -459,18 +421,10 @@ html.mfx:not(.a11y-noanim):not(.pe-on) .rd .wd.lit { opacity:1; }
 <section class="board-sec">
  <div class="wrap">
   <h2 class="sec-h rv" style="margin-bottom:22px">אם אתם מזדהים עם אחד מהמצבים כאן 👇<br>ההדרכה הזו בשבילכם</h2>
-  <div class="flips" id="flips">
-   <div class="flips-bar" aria-hidden="true"><span class="fb-now">😣 איפה אתם היום</span><span class="fb-track"><i></i></span><span class="fb-want">😌 מה שאתם באמת רוצים</span></div>
-   <ol class="fl">
-    <li class="fp rv"><div class="f-now"><span class="ic" aria-hidden="true">✕</span><span>כל חודש <strong>המשכורת נכנסת וישר יוצאת</strong>, בלי שאתם באמת מבינים <strong>לאן היא נעלמה</strong></span></div><div class="f-want"><span class="ic" aria-hidden="true">✓</span><span><strong>לדעת לאן הכסף שלכם הולך</strong> מהרגע שהמשכורת נכנסת, ו<strong>סדר שמתחיל כבר החודש</strong></span></div></li>
-    <li class="fp rv"><div class="f-now"><span class="ic" aria-hidden="true">✕</span><span>מתכננים לחסוך את <strong>"מה שנשאר"</strong>, ובסוף <strong>אף פעם לא באמת נשאר</strong></span></div><div class="f-want"><span class="ic" aria-hidden="true">✓</span><span><strong>חיסכון קבוע</strong> שגדל כל חודש</span></div></li>
-    <li class="fp rv"><div class="f-now"><span class="ic" aria-hidden="true">✕</span><span><strong>אין לכם כרית ביטחון</strong> להוצאה לא צפויה</span></div><div class="f-want"><span class="ic" aria-hidden="true">✓</span><span><strong>כרית ביטחון</strong>, כך שאף הוצאה לא צפויה לא תפיל אתכם</span></div></li>
-    <li class="fp rv"><div class="f-now"><span class="ic" aria-hidden="true">✕</span><span>השכר עלה, אבל <strong>המצב בבנק לא זז</strong></span></div><div class="f-want"><span class="ic" aria-hidden="true">✓</span><span>שהשכר שעלה יתורגם סוף סוף <strong>להתקדמות אמיתית</strong>, ולדעת <strong>שאתם בדרך הנכונה</strong></span></div></li>
-    <li class="fp rv"><div class="f-now"><span class="ic" aria-hidden="true">✕</span><span>אולי הצלחתם לחסוך כמה עשרות אלפים שפשוט <strong>"נשחקים" בעו"ש</strong>, ואתם עדיין <strong>דוחים שוב ושוב</strong> את ההחלטה להשקיע, כי אתם <strong>מתים מפחד "להמר"</strong>, לטעות ולהפסיד הכל</span></div><div class="f-want"><span class="ic" aria-hidden="true">✓</span><span>שהכסף שיושב בעו"ש <strong>יעבוד בשבילכם וייצר עוד כסף</strong></span></div></li>
-    <li class="fp rv"><div class="f-now"><span class="ic" aria-hidden="true">✕</span><span><strong>אין לכם מושג איך משקיעים</strong>, כמה משקיעים, איפה מתחילים, מה נכון לכם, <strong>הכל נשמע כמו סינית</strong></span></div><div class="f-want"><span class="ic" aria-hidden="true">✓</span><span><strong>להבין סוף סוף את עולם ההשקעות</strong>, ולקבל החלטה <strong>בביטחון</strong>, כי אתם יודעים מה מתאים לכם</span></div></li>
-    <li class="fp rv"><div class="f-now"><span class="ic" aria-hidden="true">✕</span><span>כל קנייה <strong>מלווה ברגשות אשמה</strong>, ואתם <strong>לא באמת נהנים</strong> מהכסף שאתם מרוויחים</span></div><div class="f-want"><span class="ic" aria-hidden="true">✓</span><span><strong>לקנות דברים בכיף</strong>, <strong>בלי רגשות אשמה</strong></span></div></li>
-    <li class="fp rv"><div class="f-now"><span class="ic" aria-hidden="true">✕</span><span>לפני מעבר דירה, רכישת רכב, חתונה, או הרחבת המשפחה, ובמקום להתרגש <strong>אתם בחרדה</strong> שזו תהיה <strong>"קפיצה מעל הפופיק"</strong></span></div><div class="f-want"><span class="ic" aria-hidden="true">✓</span><span><strong>להגיע מוכנים כלכלית</strong> למעבר דירה, רכישת רכב, חתונה, או הרחבת המשפחה</span></div></li>
-   </ol>
+  <div class="two">
+   <div class="blk now"><div class="blk-h"><span aria-hidden="true">😣</span> איפה אתם היום</div><ul><li class="rv"><span class="ic">✕</span><span>כל חודש <strong>המשכורת נכנסת וישר יוצאת</strong>, בלי שאתם באמת מבינים <strong>לאן היא נעלמה</strong></span></li><li class="rv"><span class="ic">✕</span><span>מתכננים לחסוך את <strong>"מה שנשאר"</strong>, ובסוף <strong>אף פעם לא באמת נשאר</strong></span></li><li class="rv"><span class="ic">✕</span><span><strong>אין לכם כרית ביטחון</strong> להוצאה לא צפויה</span></li><li class="rv"><span class="ic">✕</span><span>השכר עלה, אבל <strong>המצב בבנק לא זז</strong></span></li><li class="rv"><span class="ic">✕</span><span>אולי הצלחתם לחסוך כמה עשרות אלפים שפשוט <strong>"נשחקים" בעו"ש</strong>, ואתם עדיין <strong>דוחים שוב ושוב</strong> את ההחלטה להשקיע, כי אתם <strong>מתים מפחד "להמר"</strong>, לטעות ולהפסיד הכל</span></li><li class="rv"><span class="ic">✕</span><span><strong>אין לכם מושג איך משקיעים</strong>, כמה משקיעים, איפה מתחילים, מה נכון לכם, <strong>הכל נשמע כמו סינית</strong></span></li><li class="rv"><span class="ic">✕</span><span>כל קנייה <strong>מלווה ברגשות אשמה</strong>, ואתם <strong>לא באמת נהנים</strong> מהכסף שאתם מרוויחים</span></li><li class="rv"><span class="ic">✕</span><span>לפני מעבר דירה, רכישת רכב, חתונה, או הרחבת המשפחה, ובמקום להתרגש <strong>אתם בחרדה</strong> שזו תהיה <strong>"קפיצה מעל הפופיק"</strong></span></li></ul></div>
+   <div class="turn" aria-hidden="true">👇</div>
+   <div class="blk want"><div class="blk-h"><span aria-hidden="true">😌</span> מה שאתם באמת רוצים</div><ul><li class="rv"><span class="ic">✓</span><span><strong>לדעת לאן הכסף שלכם הולך</strong> מהרגע שהמשכורת נכנסת, ו<strong>סדר שמתחיל כבר החודש</strong></span></li><li class="rv"><span class="ic">✓</span><span><strong>חיסכון קבוע</strong> שגדל כל חודש</span></li><li class="rv"><span class="ic">✓</span><span><strong>כרית ביטחון</strong>, כך שאף הוצאה לא צפויה לא תפיל אתכם</span></li><li class="rv"><span class="ic">✓</span><span>שהשכר שעלה יתורגם סוף סוף <strong>להתקדמות אמיתית</strong>, ולדעת <strong>שאתם בדרך הנכונה</strong></span></li><li class="rv"><span class="ic">✓</span><span>שהכסף שיושב בעו"ש <strong>יעבוד בשבילכם וייצר עוד כסף</strong></span></li><li class="rv"><span class="ic">✓</span><span><strong>להבין סוף סוף את עולם ההשקעות</strong>, ולקבל החלטה <strong>בביטחון</strong>, כי אתם יודעים מה מתאים לכם</span></li><li class="rv"><span class="ic">✓</span><span><strong>לקנות דברים בכיף</strong>, <strong>בלי רגשות אשמה</strong></span></li><li class="rv"><span class="ic">✓</span><span><strong>להגיע מוכנים כלכלית</strong> למעבר דירה, רכישת רכב, חתונה, או הרחבת המשפחה</span></li></ul></div>
   </div>
  </div>
 </section>
@@ -569,8 +523,6 @@ html.mfx:not(.a11y-noanim):not(.pe-on) .rd .wd.lit { opacity:1; }
  var orig=[]; function keep(el){ orig.push([el, el.innerHTML]); }
  new MutationObserver(function(){ if(H.classList.contains('pe-on')&&orig.length){ orig.forEach(function(o){ o[0].innerHTML=o[1]; }); orig=[]; paras=[]; } }).observe(H,{attributes:true,attributeFilter:['class']});
 
- // 5. red -> green pairs
- var flips=document.getElementById('flips'), pairs=flips?flips.querySelectorAll('.fp'):[], bar=flips&&flips.querySelector('.fb-track i');
  // 3. zoom photo
  var think=document.querySelector('.think'), timg=think&&think.querySelector('img');
  // 6. story words
@@ -578,8 +530,6 @@ html.mfx:not(.a11y-noanim):not(.pe-on) .rd .wd.lit { opacity:1; }
 
  function tick(){
   if(calm()){ if(timg) timg.style.removeProperty('--z'); return; }
-  var on=0; for(var i=0;i<pairs.length;i++){ var r=pairs[i].getBoundingClientRect(), f=(r.top+r.height/2)<vh*0.42; pairs[i].classList.toggle('on',f); if(f) on++; }
-  if(flips){ flips.style.setProperty('--p', pairs.length?on/pairs.length:0); flips.classList.toggle('done', on===pairs.length); }
   if(timg){ var t=think.getBoundingClientRect(); if(t.bottom>0&&t.top<vh){ var pr=clamp((vh-t.top)/(vh+t.height)); timg.style.setProperty('--z',(1.16-0.16*clamp(pr/0.62)).toFixed(4)); } }
   paras.forEach(function(o){ var r=o.el.getBoundingClientRect(), pr=clamp((vh*0.88-r.top)/(vh*0.36+r.height)), k=Math.round(pr*o.w.length); for(var j=0;j<o.w.length;j++) o.w[j].classList.toggle('lit',j<k); });
  }
