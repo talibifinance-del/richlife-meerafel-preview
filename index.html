@@ -370,6 +370,58 @@ body { padding-bottom:92px; }
   .js .rv, .js .wins li.rv, .js .blk li.rv, .js .topic.rv, .js .think.rv { opacity:1; transform:none; }
 }
 
+/* ---------- TWO LOOPS: stuck circle vs growing circle ---------- */
+.loops { padding-block:44px 48px; }
+.loops-lead { max-width:640px; margin:0 auto 26px; text-align:center; }
+.loops-lead p { font-size:clamp(16px,4.2vw,22px); line-height:1.55; color:var(--ink); text-wrap:balance; }
+.loops-lead .q { margin-top:10px; font-size:clamp(22px,3.2vw,30px); font-weight:900; color:#b14a35; line-height:1.3; text-wrap:balance; }
+.loops-grid { display:grid; grid-template-columns:1fr auto 1fr; gap:14px; align-items:stretch; }
+.lp-vs { align-self:center; }
+.lp-card { background:var(--paper); border:1px solid var(--line); border-radius:22px; padding:20px 18px 22px; box-shadow:0 14px 34px rgba(30,43,37,.07); text-align:center; }
+.lp-card.stuck { border-top:4px solid var(--red); }
+.lp-card.grows { border-top:4px solid var(--green); }
+.lp-h { font-weight:900; font-size:19px; margin-bottom:6px; }
+.stuck .lp-h { color:#b14a35; } .grows .lp-h { color:var(--green); }
+.lp-vs { font-weight:900; color:var(--ink-soft); background:var(--paper); border:1px solid var(--line); border-radius:999px; padding:6px 14px; font-size:15px; }
+.loop { position:relative; width:min(100%,400px); aspect-ratio:1; margin:0 auto; container-type:inline-size; }
+.lp-ring { position:absolute; inset:0; width:100%; height:100%; }
+.lp-ring circle { fill:none; stroke-width:1.1; stroke-dasharray:2.2 2.2; }
+.lp-ring path { fill:none; stroke-width:1.1; stroke-linecap:round; stroke-linejoin:round; }
+.stuck .lp-ring circle, .stuck .lp-ring path { stroke:#d99a8c; }
+.grows .lp-ring circle, .grows .lp-ring path { stroke:#8fc3a3; }
+.loop ol { list-style:none; }
+.loop li { position:absolute; width:31%; transform:translate(-50%,-50%); background:#fff; border:1.5px solid; border-radius:14px; padding:6px 7px; font-size:clamp(11px,3.5cqw,14.5px); font-weight:700; line-height:1.3; text-wrap:balance; z-index:2; box-shadow:0 4px 12px rgba(30,43,37,.06); }
+.loop li span { display:block; font-size:1.25em; line-height:1.2; margin-bottom:1px; }
+.stuck .loop li { border-color:#efc9bf; color:#7b3a2c; }
+.grows .loop li { border-color:#bfdcca; color:#1f4f37; }
+.lp-rot { position:absolute; inset:0; z-index:1; }
+.lp-rot i { position:absolute; left:50%; top:16%; width:12px; height:12px; margin:-6px 0 0 -6px; border-radius:50%; }
+.stuck .lp-rot i { background:var(--red); box-shadow:0 0 0 5px rgba(193,85,63,.16); }
+.grows .lp-rot i { background:var(--green); box-shadow:0 0 0 5px rgba(47,125,85,.16); }
+.lp-mid { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:30%; display:grid; justify-items:center; gap:2px; }
+.lp-mid small { font-size:clamp(11px,3.2cqw,14px); color:var(--ink-soft); font-weight:700; }
+.lp-mid b { font-size:clamp(26px,9cqw,40px); font-weight:900; line-height:1; font-variant-numeric:tabular-nums; }
+.stuck .lp-mid b { color:#b14a35; } .grows .lp-mid b { color:var(--green); }
+.lp-mid svg { width:100%; height:auto; margin-top:6px; }
+.lp-mid svg path { stroke:#d99a8c; stroke-width:3; stroke-linecap:round; fill:none; }
+.lp-bars { display:flex; align-items:flex-end; gap:3px; height:clamp(22px,8cqw,34px); margin-top:6px; }
+.lp-bars i { width:clamp(5px,1.9cqw,8px); border-radius:3px 3px 0 0; background:linear-gradient(180deg,#3f9d63,var(--green)); }
+.lp-bars i:nth-child(1){height:22%} .lp-bars i:nth-child(2){height:36%} .lp-bars i:nth-child(3){height:50%} .lp-bars i:nth-child(4){height:65%} .lp-bars i:nth-child(5){height:82%} .lp-bars i:nth-child(6){height:100%}
+.lp-f { margin-top:10px; font-size:17px; line-height:1.55; font-weight:700; text-wrap:balance; }
+.stuck .lp-f { color:#b14a35; font-weight:900; }
+.grows .lp-f { color:#1f4f37; font-weight:500; } .grows .lp-f strong { color:var(--green); font-weight:800; }
+.lp-rot { display:none; }
+html.mfx:not(.a11y-noanim):not(.pe-on) .lp-rot { display:block; animation:lprot var(--T,9s) linear infinite; }
+html.mfx:not(.a11y-noanim):not(.pe-on) .loop li { animation:lphit var(--T,9s) linear infinite; animation-delay:calc(var(--t) * var(--T,9s)); }
+html.mfx:not(.a11y-noanim):not(.pe-on) .lp-bars i { transition:opacity .5s, transform .5s; transform-origin:bottom; }
+html.mfx:not(.a11y-noanim):not(.pe-on) .lp-bars i.off { opacity:.15; transform:scaleY(.4); }
+@keyframes lprot { to { transform:rotate(360deg); } }
+@keyframes lphit { 0%,9% { transform:translate(-50%,-50%) scale(1.07); box-shadow:0 8px 20px rgba(30,43,37,.14); } 16%,100% { transform:translate(-50%,-50%); } }
+@media (max-width:760px) {
+  .loops-grid { grid-template-columns:minmax(0,1fr); gap:12px; justify-items:center; }
+  .lp-card { width:100%; padding:16px 10px 18px; }
+  .lp-f { font-size:16px; }
+}
 /* ---------- MOTION LAYER: on only when html.mfx and not stopped by a11y or the editor ---------- */
 .cu { font-variant-numeric:tabular-nums; }
 /* zoom out as the photo scrolls by */
@@ -436,6 +488,52 @@ html.mfx:not(.a11y-noanim):not(.pe-on) .rd .wd.lit { opacity:1; }
    <figcaption class="bubble">אני מרוויחה כסף, למה אני לא מרגישה שאני מתקדמת כלכלית? <b>בגיל הזה חשבתי שאהיה יותר מסודרת</b></figcaption>
    <span class="dot d1" aria-hidden="true"></span><span class="dot d2" aria-hidden="true"></span>
   </figure>
+ </div>
+</section>
+
+<section class="loops" id="loops">
+ <div class="wrap">
+  <div class="loops-lead rv">
+   <p>המשכורת נכנסת</p>
+   <p>ואחרי כמה ימים היא כבר לא באמת שם.</p>
+   <p>ושוב אתם מוצאים את עצמכם בלילה מול החשבון,</p>
+   <p>עם אותה שאלה שצורבת בגרון:</p>
+   <p class="q">"איך לעזאזל שוב אין לנו שקל פנוי?"</p>
+  </div>
+  <div class="loops-grid">
+   <div class="lp-card stuck rv">
+    <p class="lp-h"><span aria-hidden="true">🔁</span> המעגל שתוקע</p>
+    <div class="loop">
+     <svg class="lp-ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="34"/><path d="M-1.4,-2.1 L1.3,0 L-1.4,2.1" transform="translate(69.98 22.49) rotate(36.0)"/><path d="M-1.4,-2.1 L1.3,0 L-1.4,2.1" transform="translate(82.34 60.51) rotate(108.0)"/><path d="M-1.4,-2.1 L1.3,0 L-1.4,2.1" transform="translate(50.00 84.00) rotate(180.0)"/><path d="M-1.4,-2.1 L1.3,0 L-1.4,2.1" transform="translate(17.66 60.51) rotate(252.0)"/><path d="M-1.4,-2.1 L1.3,0 L-1.4,2.1" transform="translate(30.02 22.49) rotate(324.0)"/></svg>
+     <div class="lp-rot" aria-hidden="true"><i></i></div>
+     <ol>
+     <li style="left:50.00%;top:16.00%;--t:0.000"><span aria-hidden="true">💸</span> נכנס כסף</li>
+     <li style="left:82.34%;top:39.49%;--t:0.200"><span aria-hidden="true">💨</span> יוצא, ולא ברור לאן</li>
+     <li style="left:69.98%;top:77.51%;--t:0.400"><span aria-hidden="true">🕳️</span> לא נשאר לחסוך</li>
+     <li style="left:30.02%;top:77.51%;--t:0.600"><span aria-hidden="true">📅</span> נגמר החודש</li>
+     <li style="left:17.66%;top:39.49%;--t:0.800"><span aria-hidden="true">🤷</span> "לא נורא, חודש הבא ננסה"</li>
+     </ol>
+     <div class="lp-mid" aria-hidden="true"><small>חודש</small><b class="lp-mo">1</b><svg viewBox="0 0 60 14"><path d="M2 8 L58 8"/></svg></div>
+    </div>
+    <p class="lp-f">לא מתקדמים לשום מקום</p>
+   </div>
+   <div class="lp-vs" aria-hidden="true">לעומת</div>
+   <div class="lp-card grows rv">
+    <p class="lp-h"><span aria-hidden="true">📈</span> המעגל שמקדם</p>
+    <div class="loop">
+     <svg class="lp-ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="34"/><path d="M-1.4,-2.1 L1.3,0 L-1.4,2.1" transform="translate(74.04 25.96) rotate(45.0)"/><path d="M-1.4,-2.1 L1.3,0 L-1.4,2.1" transform="translate(74.04 74.04) rotate(135.0)"/><path d="M-1.4,-2.1 L1.3,0 L-1.4,2.1" transform="translate(25.96 74.04) rotate(225.0)"/><path d="M-1.4,-2.1 L1.3,0 L-1.4,2.1" transform="translate(25.96 25.96) rotate(315.0)"/></svg>
+     <div class="lp-rot" aria-hidden="true"><i></i></div>
+     <ol>
+     <li style="left:50.00%;top:16.00%;--t:0.000"><span aria-hidden="true">💰</span> נכנס כסף</li>
+     <li style="left:84.00%;top:50.00%;--t:0.250"><span aria-hidden="true">🎯</span> חיסכון למטרות, כמו חופשה והשקעה</li>
+     <li style="left:50.00%;top:84.00%;--t:0.500"><span aria-hidden="true">🍹</span> כסף למחייה וגם להנאות</li>
+     <li style="left:16.00%;top:50.00%;--t:0.750"><span aria-hidden="true">📈</span> מתקדמים כלכלית</li>
+     </ol>
+     <div class="lp-mid" aria-hidden="true"><small>חודש</small><b class="lp-mo">1</b><span class="lp-bars"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+    </div>
+    <p class="lp-f">וחודש הבא, אותו הדבר: <strong>החיסכון גדל</strong>, <strong>הביטחון גדל</strong>, <strong>השקט הכלכלי נבנה</strong></p>
+   </div>
+  </div>
  </div>
 </section>
 
@@ -570,6 +668,17 @@ html.mfx:not(.a11y-noanim):not(.pe-on) .rd .wd.lit { opacity:1; }
   requestAnimationFrame(function raf(t){ if(calm()){ if(lenis){ lenis.destroy(); lenis=null; } return; } lenis.raf(t); requestAnimationFrame(raf); });
   document.querySelectorAll('a[href^="#"]').forEach(function(a){ a.addEventListener('click',function(ev){ var id=a.getAttribute('href'); if(!lenis||id.length<2) return; var el=document.querySelector(id); if(!el) return; ev.preventDefault(); lenis.scrollTo(el,{offset:-12, duration:1.3}); }); });
  });
+})();
+</script>
+<script>
+/* loops: count the months; the stuck circle stays flat, the growing one adds a bar each lap */
+(function(){
+ var H=document.documentElement; if(!H.classList.contains('mfx')) return;
+ var T=9000, cards=document.querySelectorAll('.lp-card'), m=1;
+ function calm(){ return H.classList.contains('a11y-noanim')||H.classList.contains('pe-on'); }
+ function paint(){ cards.forEach(function(c){ var mo=c.querySelector('.lp-mo'); if(mo) mo.textContent=calm()?'1':m;
+  c.querySelectorAll('.lp-bars i').forEach(function(b,i){ b.classList.toggle('off', !calm() && i>=Math.min(m,6)); }); }); }
+ paint(); setInterval(function(){ m=m>=12?1:m+1; paint(); }, T);
 })();
 </script>
 <div class="sticky" id="sticky"><a class="btn" href="#join">שמרו לי מקום בהדרכה</a></div>
