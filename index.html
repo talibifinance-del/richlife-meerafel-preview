@@ -444,8 +444,9 @@ body { padding-bottom:92px; }
 .stuck .lp-f { color:#b14a35; font-weight:900; }
 .grows .lp-f { color:#1f4f37; font-weight:500; } .grows .lp-f strong { color:var(--green); font-weight:800; }
 .lp-rot { display:none; }
-html.mfx:not(.a11y-noanim):not(.pe-on) .lp-rot { display:block; animation:lprot var(--T,9s) linear infinite; }
-html.mfx:not(.a11y-noanim):not(.pe-on) .loop li { animation:lphit var(--T,9s) linear infinite; animation-delay:calc(var(--t) * var(--T,9s)); }
+html.mfx:not(.a11y-noanim):not(.pe-on) .lp-rot { display:block; }
+html.mfx:not(.a11y-noanim):not(.pe-on) .lp-card.go .lp-rot { animation:lprot var(--T,9s) linear infinite; }
+html.mfx:not(.a11y-noanim):not(.pe-on) .lp-card.go .loop li { animation:lphit var(--T,9s) linear infinite; animation-delay:calc(var(--t) * var(--T,9s)); }
 html.mfx:not(.a11y-noanim):not(.pe-on) .lp-bars i { transition:opacity .5s, transform .5s; transform-origin:bottom; }
 html.mfx:not(.a11y-noanim):not(.pe-on) .lp-bars i.off { opacity:.15; transform:scaleY(.4); }
 @keyframes lprot { to { transform:rotate(360deg); } }
@@ -705,14 +706,21 @@ html.mfx:not(.a11y-noanim):not(.pe-on) .rd .wd.lit { opacity:1; }
 })();
 </script>
 <script>
-/* loops: count the months; the stuck circle stays flat, the growing one adds a bar each lap */
+/* loops: each circle starts from "נכנס כסף" only when it scrolls into view; then it counts the months
+   (the stuck circle stays flat, the growing one adds a bar each lap) */
 (function(){
  var H=document.documentElement; if(!H.classList.contains('mfx')) return;
- var T=9000, cards=document.querySelectorAll('.lp-card'), m=1;
+ var T=9000;
  function calm(){ return H.classList.contains('a11y-noanim')||H.classList.contains('pe-on'); }
- function paint(){ cards.forEach(function(c){ var mo=c.querySelector('.lp-mo'); if(mo) mo.textContent=calm()?'1':m;
-  c.querySelectorAll('.lp-bars i').forEach(function(b,i){ b.classList.toggle('off', !calm() && i>=Math.min(m,6)); }); }); }
- paint(); setInterval(function(){ m=m>=12?1:m+1; paint(); }, T);
+ function paint(c,m){ var mo=c.querySelector('.lp-mo'); if(mo) mo.textContent=calm()?'1':m;
+  c.querySelectorAll('.lp-bars i').forEach(function(b,i){ b.classList.toggle('off', !calm() && i>=Math.min(m,6)); }); }
+ function start(c){ if(c.classList.contains('go')) return; var m=1; paint(c,m); c.classList.add('go');
+  setInterval(function(){ m=m>=12?1:m+1; paint(c,m); }, T); }
+ var cards=[].slice.call(document.querySelectorAll('.lp-card'));
+ cards.forEach(function(c){ paint(c,1); });
+ if(!('IntersectionObserver' in window)){ cards.forEach(start); return; }
+ var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ start(e.target); io.unobserve(e.target); } }); },{threshold:.45});
+ cards.forEach(function(c){ io.observe(c); });
 })();
 </script>
 <script>
