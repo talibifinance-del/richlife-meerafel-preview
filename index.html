@@ -262,6 +262,8 @@ h1 .c { color:var(--pine); animation:clearin 1.1s ease-out 1s both; }
 /* registration form on the dark band */
 .reg-form { display:grid; gap:12px; max-width:520px; margin:6px auto 0; text-align:start; }
 .rf-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.rf-wide { grid-column:1 / -1; }
+.rf-f input[type="tel"] { text-align:right; }
 .rf-f { display:grid; gap:5px; font-size:14px; font-weight:700; color:#dbe8df; }
 .rf-f input { width:100%; font:inherit; font-weight:500; font-size:16px; color:var(--ink); background:#fff; border:2px solid transparent; border-radius:12px; padding:13px 14px; }
 .rf-f input:focus { outline:none; border-color:var(--sage); box-shadow:0 0 0 3px rgba(255,255,255,.18); }
@@ -569,6 +571,7 @@ html.mfx:not(.a11y-noanim):not(.pe-on) .rd .wd.lit { opacity:1; }
     <div class="rf-row">
      <label class="rf-f"><span>שם</span><input type="text" id="rf-name" name="name" autocomplete="name" maxlength="80" required></label>
      <label class="rf-f"><span>מייל</span><input type="email" id="rf-email" name="email" autocomplete="email" inputmode="email" maxlength="255" required></label>
+     <label class="rf-f rf-wide"><span>טלפון נייד</span><input type="tel" id="rf-phone" name="phone" autocomplete="tel" inputmode="tel" maxlength="20" dir="ltr" required></label>
     </div>
     <label class="rf-c"><input type="checkbox" id="rf-mail" name="consent_mail" required><span>מאשרים לקבל מיילים מטלי בנימינוב שרעבי, כולל הקישור להדרכה ותזכורות</span></label>
     <label class="rf-c"><input type="checkbox" id="rf-terms" name="consent_terms" required><span>מסכימים ל<a href="https://first-invest.richlife.co.il/terms/" target="_blank" rel="noopener">תקנון</a> ול<a href="https://first-invest.richlife.co.il/privacy/" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
@@ -716,11 +719,12 @@ html.mfx:not(.a11y-noanim):not(.pe-on) .rd .wd.lit { opacity:1; }
  var msg=document.getElementById('rf-msg');
  f.addEventListener('submit',function(e){
   e.preventDefault();
-  var n=f.querySelector('#rf-name'), m=f.querySelector('#rf-email'), c1=f.querySelector('#rf-mail'), c2=f.querySelector('#rf-terms'), bad=[];
-  [n,m].forEach(function(i){ i.removeAttribute('aria-invalid'); });
+  var n=f.querySelector('#rf-name'), m=f.querySelector('#rf-email'), ph=f.querySelector('#rf-phone'), c1=f.querySelector('#rf-mail'), c2=f.querySelector('#rf-terms'), bad=[];
+  [n,m,ph].forEach(function(i){ i.removeAttribute('aria-invalid'); });
   [c1,c2].forEach(function(i){ i.closest('.rf-c').classList.remove('bad'); });
   if(!n.value.trim()){ n.setAttribute('aria-invalid','true'); bad.push('שם'); }
   if(!/^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$/.test(m.value.trim())){ m.setAttribute('aria-invalid','true'); bad.push('מייל תקין'); }
+  if(!/^(\+?972[\- ]?|0)5\d[\- ]?\d{3}[\- ]?\d{4}$/.test(ph.value.trim())){ ph.setAttribute('aria-invalid','true'); bad.push('טלפון נייד'); }
   if(!c1.checked){ c1.closest('.rf-c').classList.add('bad'); bad.push('אישור לקבלת מיילים'); }
   if(!c2.checked){ c2.closest('.rf-c').classList.add('bad'); bad.push('אישור התקנון'); }
   msg.classList.remove('ok');
