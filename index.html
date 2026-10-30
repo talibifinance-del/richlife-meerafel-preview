@@ -294,6 +294,14 @@ h1 .c { color:var(--pine); animation:clearin 1.1s ease-out 1s both; }
 .wins li { display:grid; grid-template-columns:30px 1fr; gap:10px; align-items:start; background:var(--bg); border-radius:14px; padding:11px 14px; font-size:16px; line-height:1.55; }
 .wins li > span:first-child { font-size:20px; line-height:1.3; }
 .wins strong { color:var(--green); }
+/* a small real photo beside each milestone; two overlap like prints */
+.wins li:has(.wph) { grid-template-columns:30px 1fr auto; align-items:center; }
+.wph { margin:0; display:flex; align-items:center; }
+.wph img { display:block; width:84px; height:84px; border-radius:12px; object-fit:cover; border:3px solid #fff; transform:rotate(-3deg); box-shadow:0 6px 14px rgba(30,43,37,.16); background:var(--green-soft); }
+.wph.two img { width:70px; height:70px; }
+.wph.two img + img { margin-inline-start:-20px; transform:rotate(5deg) translateY(10px); }
+.story-txt > p.story-punch { font-size:clamp(20px,2.4vw,24px); font-weight:800; line-height:1.5; text-align:center; background:var(--green-soft); border-radius:16px; padding:14px 16px; max-width:none; }
+.story-punch strong { color:var(--green); }
 .js .wins li.rv { transform:translateX(-30px); transition:opacity .5s ease, transform .5s cubic-bezier(.2,.8,.2,1.1); }
 .js .blk li.rv.in, .js .wins li.rv.in { opacity:1; transform:none; }
 .join-grid.solo { grid-template-columns:1fr; max-width:640px; text-align:center; }
@@ -575,13 +583,15 @@ html.mfx:not(.a11y-noanim):not(.pe-on) .rd .wd.lit { opacity:1; }
    <p class="story-lead rv">ככה זה נראה אצלנו היום:</p>
    <ul class="wins">
     <li class="rv"><span aria-hidden="true">💰</span><span><strong>חוסכים כל חודש באופן קבוע</strong>, בלי להרגיש שאנחנו מתקמצנים על עצמנו</span></li>
-    <li class="rv"><span aria-hidden="true">📈</span><span><strong>בנינו תיק השקעות</strong>, ויש לנו כמה השקעות נדל"ן, גם בארה"ב</span></li>
-    <li class="rv"><span aria-hidden="true">🧠</span><span><strong>מקבלים החלטות כלכליות חכמות</strong>: לפני כל השקעה אנחנו יודעים מה הסיכונים ומתי צפוי רווח</span></li>
-    <li class="rv"><span aria-hidden="true">🏡</span><span><strong>עברנו דירה</strong>, מוכנים כלכלית ובלי "קפיצה מעל הפופיק"</span></li>
-    <li class="rv"><span aria-hidden="true">💍</span><span><strong>יצאנו מהחתונה בפלוס</strong>, ועם הכסף הזה טסנו לירח דבש בתאילנד ✈️</span></li>
-    <li class="rv"><span aria-hidden="true">👶</span><span><strong>יצאתי לחופשת לידה ארוכה</strong>, בלי לחץ על הכסף</span></li>
+    <li class="rv"><span aria-hidden="true">🌍</span><span><strong>טסים ומבלים</strong>, והחופשות כבר חלק מהתוכנית ולא באות על חשבון החיסכון</span><figure class="wph two"><img src="images/story-amalfi.webp" alt="טלי ודרור בחופשה באיטליה" loading="lazy" decoding="async" width="360" height="360"><img src="images/story-festival2.webp" alt="טלי ודרור בפסטיבל" loading="lazy" decoding="async" width="360" height="360"></figure></li>
+    <li class="rv"><span aria-hidden="true">📈</span><span><strong>בנינו תיק השקעות מגוון</strong> שמשלב שוק ההון, נדל"ן בארץ ונדל"ן בחו"ל, ומביא לנו גם <strong>הכנסה פאסיבית בכל חודש</strong></span><figure class="wph"><img src="images/story-sign-partnership.webp" alt="טלי ודרור חותמים על הסכם שיתוף בהשקעה" loading="lazy" decoding="async" width="360" height="360"></figure></li>
+    <li class="rv"><span aria-hidden="true">🧠</span><span><strong>מקבלים החלטות כלכליות חכמות</strong>: לפני כל השקעה אנחנו יודעים מה הסיכון ומתי צפוי הרווח</span><figure class="wph"><img src="images/story-sign-docs.webp" alt="טלי ודרור חותמים על מסמכים" loading="lazy" decoding="async" width="360" height="360"></figure></li>
+    <li class="rv"><span aria-hidden="true">🏡</span><span><strong>עברנו דירה</strong> כשהיינו מוכנים לזה כלכלית, בלי "לקפוץ מעל הפופיק"</span></li>
+    <li class="rv"><span aria-hidden="true">💍</span><span><strong>יצאנו מהחתונה בפלוס</strong>, ועם הכסף הזה טסנו לירח דבש בתאילנד ✈️</span><figure class="wph two"><img src="images/story-wedding.webp" alt="טלי ודרור בחתונה שלהם" loading="lazy" decoding="async" width="360" height="360"><img src="images/story-thailand.webp" alt="טלי ודרור בירח הדבש בתאילנד" loading="lazy" decoding="async" width="360" height="360"></figure></li>
+    <li class="rv"><span aria-hidden="true">👶</span><span><strong>יצאתי לחופשת לידה ארוכה</strong>, בלי לחץ כלכלי</span><figure class="wph"><img src="images/story-pregnancy.webp" alt="טלי ודרור בהריון עם תמונת אולטרסאונד" loading="lazy" decoding="async" width="360" height="360"></figure></li>
    </ul>
-   <p class="rv">היום, בגיל 27, אני עובדת כי אני בוחרת בשליחות שלי, והכסף כבר לא מקור ללחץ. בשלוש השנים האחרונות אני מלווה זוגות ויחידים לעשות את אותה הדרך. <strong class="g">בלי ירושה, ובלי לזכות בלוטו.</strong></p>
+   <p class="story-punch rv">וכל זה <strong>בלי ירושה, ובלי לזכות בלוטו.</strong></p>
+   <p class="rv">היום, בגיל 27, אני עובדת כי בחרתי בשליחות שלי, והכסף כבר לא מקור ללחץ. ב-3 השנים האחרונות אני מלווה זוגות ויחידים שעושים בדיוק את אותה הדרך.</p>
   </div>
  </div>
 </section>
@@ -617,7 +627,7 @@ html.mfx:not(.a11y-noanim):not(.pe-on) .rd .wd.lit { opacity:1; }
  // 3. zoom photo
  var think=document.querySelector('.think'), timg=think&&think.querySelector('img');
  // 6. story words
- var paras=[]; document.querySelectorAll('.story-txt > p:not(.story-hi):not(.story-lead)').forEach(function(p){ p.classList.add('rd'); keep(p); paras.push({el:p, w:split(p,'wd',true)}); });
+ var paras=[]; document.querySelectorAll('.story-txt > p:not(.story-hi):not(.story-lead):not(.story-punch)').forEach(function(p){ p.classList.add('rd'); keep(p); paras.push({el:p, w:split(p,'wd',true)}); });
 
  function tick(){
   if(calm()){ if(timg) timg.style.removeProperty('--z'); return; }
