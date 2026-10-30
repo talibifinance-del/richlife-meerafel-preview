@@ -451,6 +451,12 @@ html.mfx:not(.a11y-noanim):not(.pe-on) .lp-card.go .loop li { animation:lphit va
 html.mfx:not(.a11y-noanim):not(.pe-on) .lp-bars i { transition:opacity .5s, transform .5s; transform-origin:bottom; }
 html.mfx:not(.a11y-noanim):not(.pe-on) .lp-bars i.off { opacity:.15; transform:scaleY(.4); }
 @keyframes lprot { to { transform:rotate(360deg); } }
+/* "if you relate" heading: pulses forward and back for 2s once it scrolls in, then rests; the hand nods down */
+.pop, .pop-hand { display:inline-block; }
+html.mfx:not(.a11y-noanim):not(.pe-on) .rv.in .pop { animation:hpop 2s ease-in-out .45s 1 both; }
+html.mfx:not(.a11y-noanim):not(.pe-on) .rv.in .pop-hand { animation:hhand .5s ease-in-out .45s 4; }
+@keyframes hpop { 0%,32%,64%,100% { transform:scale(1); } 16%,48% { transform:scale(1.09); } 80% { transform:scale(1.05); } }
+@keyframes hhand { 0%,100% { transform:translateY(0); } 50% { transform:translateY(7px); } }
 /* the chip the dot reaches lights up in full colour until the dot moves on, so one step reads at a time */
 @keyframes lphit { 0%,15% { transform:translate(-50%,-50%) scale(1.3); background:var(--hit); border-color:var(--hit); color:#fff; font-weight:800; box-shadow:0 12px 26px rgba(30,43,37,.24); z-index:3; } 19%,100% { transform:translate(-50%,-50%); background:#fff; border-color:var(--bd); color:var(--ink); } }
 @media (max-width:760px) {
@@ -507,7 +513,7 @@ html.mfx:not(.a11y-noanim):not(.pe-on) .rd .wd.lit { opacity:1; }
 
 <section class="board-sec">
  <div class="wrap">
-  <h2 class="sec-h rv" style="margin-bottom:22px">אם אתם מזדהים עם אחד מהמצבים כאן 👇<br>ההדרכה הזו בשבילכם</h2>
+  <h2 class="sec-h rv" style="margin-bottom:22px"><span class="pop">אם אתם מזדהים עם אחד מהמצבים כאן <span class="pop-hand" aria-hidden="true">👇</span><br>ההדרכה הזו בשבילכם</span></h2>
   <div class="two">
    <div class="blk now"><div class="blk-h"><span aria-hidden="true">😣</span> איפה אתם היום</div><ul><li class="rv"><span class="ic">✕</span><span>כל חודש <strong>המשכורת נכנסת וישר יוצאת</strong>, בלי שאתם באמת מבינים <strong>לאן היא נעלמה</strong></span></li><li class="rv"><span class="ic">✕</span><span>מתכננים לחסוך את <strong>"מה שנשאר"</strong>, ובסוף <strong>אף פעם לא באמת נשאר</strong></span></li><li class="rv"><span class="ic">✕</span><span><strong>אין לכם כרית ביטחון</strong> להוצאה לא צפויה</span></li><li class="rv"><span class="ic">✕</span><span>השכר עלה, אבל <strong>המצב בבנק לא זז</strong></span></li><li class="rv"><span class="ic">✕</span><span>אולי הצלחתם לחסוך כמה עשרות אלפים שפשוט <strong>"נשחקים" בעו"ש</strong>, ואתם עדיין <strong>דוחים שוב ושוב</strong> את ההחלטה להשקיע, כי אתם <strong>מתים מפחד "להמר"</strong>, לטעות ולהפסיד הכל</span></li><li class="rv"><span class="ic">✕</span><span><strong>אין לכם מושג איך משקיעים</strong>, כמה משקיעים, איפה מתחילים, מה נכון לכם, <strong>הכל נשמע כמו סינית</strong></span></li><li class="rv"><span class="ic">✕</span><span>כל קנייה <strong>מלווה ברגשות אשמה</strong>, ואתם <strong>לא באמת נהנים</strong> מהכסף שאתם מרוויחים</span></li><li class="rv"><span class="ic">✕</span><span>לפני מעבר דירה, רכישת רכב, חתונה, או הרחבת המשפחה, ובמקום להתרגש <strong>אתם בחרדה</strong> שזו תהיה <strong>"קפיצה מעל הפופיק"</strong></span></li></ul>
    <div class="lp-card stuck">
