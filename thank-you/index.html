@@ -30,13 +30,15 @@
 body { background:var(--bg); color:var(--ink); font-family:var(--font); font-size:17px; line-height:1.55; direction:rtl; -webkit-font-smoothing:antialiased; }
 .wrap { max-width:560px; margin:0 auto; padding-block:18px 84px; padding-left:max(18px, env(safe-area-inset-left,0px)); padding-right:max(18px, env(safe-area-inset-right,0px)); display:grid; gap:14px; }
 strong { font-weight:800; }
-.top { text-align:center; display:grid; gap:6px; justify-items:center; }
+.top { text-align:center; display:grid; gap:4px; justify-items:center; }
 .party { font-size:34px; line-height:1.1; animation:pop .7s cubic-bezier(.22,.68,0,1.3) both; }
 h1 { font-size:clamp(30px,8vw,40px); font-weight:900; line-height:1.15; color:var(--pine-deep); text-wrap:balance; }
 .when { font-weight:800; color:var(--green); font-size:18px; }
 .mail { background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:14px 16px; text-align:center; font-size:16px; }
 .mail b { display:block; font-size:17px; font-weight:800; }
 .mail span { color:var(--ink-soft); font-size:15px; }
+.wa-card { background:var(--paper); border:2px solid #bcdcc7; border-radius:22px; padding:16px 16px 20px; display:grid; gap:11px; }
+.wa-card h2 { font-size:clamp(21px,5.4vw,25px); font-weight:900; line-height:1.2; text-align:center; text-wrap:balance; color:var(--pine-deep); }
 .card { background:var(--sage); color:var(--sage-ink); border-radius:22px; padding:16px 16px 14px; display:grid; gap:11px; }
 .card h2 { font-size:clamp(22px,5.6vw,26px); font-weight:900; line-height:1.2; text-align:center; text-wrap:balance; }
 .lead { text-align:center; font-size:16px; font-weight:500; text-wrap:balance; }
@@ -52,6 +54,7 @@ h1 { font-size:clamp(30px,8vw,40px); font-weight:900; line-height:1.15; color:va
 .opt[aria-pressed="true"] { border-color:#244a37; background:var(--green-soft); }
 .opt[aria-pressed="true"] i { background:#244a37; border-color:#244a37; }
 .opt[aria-pressed="true"] i::before { content:"✓"; }
+.opt.one i { border-radius:50%; }
 .hint { font-size:15px; font-weight:600; text-align:center; margin-top:-5px; }
 .words { display:grid; gap:6px; font-size:15.5px; font-weight:800; }
 .opt:focus-visible, .go:focus-visible, .skip:focus-visible, textarea:focus-visible { outline:3px solid #244a37; outline-offset:2px; }
@@ -83,27 +86,31 @@ canvas#conf { position:fixed; inset:0; width:100%; height:100%; pointer-events:n
 
  <p class="mail"><b>הקישור להדרכה בדרך למייל שלכם 📬</b><span>לא רואים אותו? בדקו בתיקיית הספאם ובקידומי מכירות</span></p>
 
+ <section class="wa-card" aria-labelledby="wa-h">
+  <h2 id="wa-h">הצטרפו לקבוצת הוואטסאפ של ההדרכה</h2>
+  <p class="lead">שם אשלח לכם תזכורות ואת הקישור לשידור, כדי שלא תפספסו. רק אני כותבת בקבוצה, בלי הצפות</p>
+  <a class="go wa" id="wa-btn" href="https://chat.whatsapp.com/BSDy5FUdomuDCXgnSEaPnc?mode=gi_t" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>הצטרפו לקבוצה בוואטסאפ</a>
+ </section>
+
  <section class="card" id="survey" aria-labelledby="sv-h">
-  <h2 id="sv-h">אני רוצה להכיר אתכם</h2>
-  <p class="lead">4 שאלות קצרות, כדי שבהדרכה אדבר על מה שבאמת מעסיק אתכם</p>
+  <h2 id="sv-h">ועכשיו, אני רוצה להכיר אתכם</h2>
+  <p class="lead">כמה שאלות קצרות, כדי שבהדרכה אדבר על מה שבאמת מעסיק אתכם</p>
   <div class="bar" aria-hidden="true"><i id="sv-bar"></i></div>
   <p class="count" id="sv-count"></p>
   <p class="q" id="sv-q" tabindex="-1" aria-live="polite"></p>
-  <p class="hint">אפשר לסמן כמה שמתאים</p>
+  <p class="hint" id="sv-hint">אפשר לסמן כמה שמתאים</p>
   <div class="opts" id="sv-opts"></div>
   <label class="words" id="sv-words-l"><span>ובמילים שלכם?</span><textarea id="sv-words" maxlength="600" placeholder="כתבו כאן איך שבא לכם (לא חובה)"></textarea></label>
   <button class="go" type="button" id="sv-next">הבא</button>
   <div class="nav">
-   <button class="skip" type="button" id="sv-skip">דלגו ישר לקבוצת הוואטסאפ</button>
+   <button class="skip" type="button" id="sv-skip">דלגו על השאלה</button>
    <button class="skip" type="button" id="sv-back" hidden>חזרה לשאלה הקודמת</button>
   </div>
  </section>
 
- <section class="card" id="wa" aria-labelledby="wa-h" hidden>
-  <h2 id="wa-h" tabindex="-1">תודה! ועוד צעד אחרון 👇</h2>
-  <p class="lead">הצטרפו לקבוצת הוואטסאפ של ההדרכה. שם אשלח לכם תזכורות ואת הקישור לשידור, כדי שלא תפספסו</p>
-  <a class="go wa" id="wa-btn" href="https://chat.whatsapp.com/BSDy5FUdomuDCXgnSEaPnc?mode=gi_t" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>הצטרפו לקבוצה בוואטסאפ</a>
-  <p class="small">רק אני כותבת בקבוצה, בלי הצפות</p>
+ <section class="card" id="sv-done" aria-labelledby="dn-h" hidden>
+  <h2 id="dn-h" tabindex="-1">תודה! 💚</h2>
+  <p class="lead">התשובות אצלי, ואקרא אותן לפני ההדרכה. נתראה שם</p>
  </section>
 
  <p class="testnote" id="testnote" hidden>מצב בדיקה: התשובות עדיין לא נשמרות</p>
@@ -111,19 +118,25 @@ canvas#conf { position:fixed; inset:0; width:100%; height:100%; pointer-events:n
 </main>
 
 <script>
-/* thank-you flow: count the registration once, ask 4 quick questions (several answers + their own words), then hand over the WhatsApp group */
+/* thank-you flow: count the registration once, offer the WhatsApp group up top, then the questionnaire. one=pick one and move on, otherwise several + their own words */
 (function(){
  var WORKER_URL=''; // same Worker as the registration form; empty = answers are not saved
  var QS=[
-  {k:'today',q:'איפה אתם נמצאים היום?',words:true,o:['המשכורת נכנסת, ואתם לא יודעים לאן היא הולכת','מכניסים יפה, ובכל זאת בסוף החודש שוב על הקשקש','כל הזמן נכנסים למינוס ולא מצליחים לחסוך','יש כסף שיושב בעו"ש, ואתם לא יודעים מה לעשות איתו','יש השקעות או קופות, ואתם בערפל לגבי מה שקורה שם']},
-  {k:'block',q:'מה הכי מפריע לכם?',words:true,o:['לא יודעים מאיפה להתחיל','מפחדים לקבל החלטה לא נכונה ולהפסיד','שומעים המון עצות, ובסוף לא עושים כלום','יודעים מה צריך, ופשוט לא מצליחים ליישם','לא נשאר כסף לחסוך או להשקיע']},
-  {k:'want',q:'עם מה הייתם רוצים לצאת מההדרכה?',words:true,o:['לדעת לאן הכסף שלכם הולך','איך לחסוך כל חודש באופן קבוע','איך להתחיל להשקיע בלי לפחד להפסיד','איך ליהנות מהכסף בלי רגשות אשמה','איך נראית תוכנית כלכלית אמיתית','להגיע מוכנים למעבר דירה, חתונה או הרחבת המשפחה']},
-  {k:'stage',q:'באיזה שלב בחיים אתם?',o:['לבד, בלי ילדים','בזוגיות, בלי ילדים','לקראת חתונה, מעבר דירה או ילד','הורים']}
+  {k:'conduct',one:true,q:'איך הייתם מתארים את ההתנהלות הכלכלית שלכם היום?',o:['בקושי סוגרים, מינוס או הלוואות','לפעמים במינוס, לא יציב','מסתדרים, אבל כמעט לא חוסכים','בשליטה, חוסכים בקביעות']},
+  {k:'bother',words:true,q:'מה מפריע לכם בהתנהלות הכלכלית שלכם היום?',o:['המשכורת נכנסת, ולא ברור לאן היא הולכת','מכניסים יפה, ובכל זאת בסוף החודש שוב על הקשקש','מתכננים לחסוך את "מה שנשאר", ובסוף לא נשאר','כל קנייה מלווה ברגשות אשמה','אין תוכנית לטווח הארוך','לא יודעים מה קורה בפנסיה ובקופות','קשה לדבר על כסף בזוגיות']},
+  {k:'cushion',one:true,q:'אם מחר ההכנסה נעצרת, לכמה זמן יש לכם כסף נזיל להחזיק?',o:['אין, ממש כלום','פחות מחודש','1-3 חודשים','חצי שנה ומעלה']},
+  {k:'where',q:'איפה יושב הכסף שחסכתם עד היום?',o:['בעו"ש','בפיקדון או בקרן כספית','בקרן השתלמות','בתיק השקעות','בנדל"ן','עדיין אין חיסכון']},
+  {k:'invest',words:true,q:'מה עוצר אתכם מלהתחיל להשקיע, או מלהשקיע יותר?',o:['אין מושג איך משקיעים ואיפה מתחילים','פחד להמר, לטעות ולהפסיד','שומעים המון עצות, ובסוף לא עושים כלום','לא נשאר כסף להשקיע','כבר משקיעים, ולא יודעים אם זה נכון']},
+  {k:'tried',words:true,q:'מה כבר ניסיתם כדי לעשות סדר בכסף?',o:['טבלת מעקב','אפליקציה','קורס או מדריך','ייעוץ או ליווי','עדיין כלום']},
+  {k:'goal',q:'בשביל מה הכי חשוב לכם להתארגן כלכלית בשנים הקרובות?',o:['מעבר דירה או קניית דירה','חתונה','הרחבת המשפחה','רכישת רכב','חופשות ובילויים בלי רגשות אשמה','שקט כלכלי, בלי לרדוף אחרי עוד משכורת']},
+  {k:'want',words:true,q:'עם מה הייתם רוצים לצאת מההדרכה?',o:['לדעת לאן הכסף הולך','איך לחסוך כל חודש באופן קבוע','איך להתחיל להשקיע בלי לפחד להפסיד','איך ליהנות מהכסף בלי רגשות אשמה','איך נראית תוכנית כלכלית אמיתית']},
+  {k:'stage',one:true,q:'מה המצב שלכם היום?',o:['לבד, בלי ילדים','בזוגיות, בלי ילדים','הורים']},
+  {k:'age',one:true,q:'בני כמה אתם?',o:['עד 24','25-29','30-34','35-39','40 ומעלה']}
  ];
  var $=function(id){ return document.getElementById(id); };
  var qp=new URLSearchParams(location.search), TEST=qp.has('demo')||qp.has('test');
  var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
- var who={}, A={}, W={}, i=0, saved=false, done=false;
+ var who={}, A={}, W={}, i=0, last='', done=false, RID=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 
  // the landing form leaves a note for this tab: the Lead counts once, and a reload still knows whose answers these are
  try{ var raw=sessionStorage.getItem('mrf_reg'); if(raw){ who=JSON.parse(raw)||{};
@@ -134,38 +147,51 @@ canvas#conf { position:fixed; inset:0; width:100%; height:100%; pointer-events:n
 
  function keepWords(){ var Q=QS[i]; if(Q&&Q.words) W[Q.k]=$('sv-words').value.trim(); }
  function show(jump){
-  var Q=QS[i], box=$('sv-opts'), last=i===QS.length-1;
+  var Q=QS[i], box=$('sv-opts'), end=i===QS.length-1;
   $('sv-count').textContent='שאלה '+(i+1)+' מתוך '+QS.length;
   $('sv-bar').style.width=((i+1)/QS.length*100)+'%';
   $('sv-q').textContent=Q.q;
+  $('sv-hint').hidden=!!Q.one;
   $('sv-words-l').hidden=!Q.words; $('sv-words').value=W[Q.k]||'';
-  $('sv-next').textContent=last?'סיימתי':'הבא'; $('sv-back').hidden=i===0;
+  $('sv-next').hidden=!!Q.one; $('sv-next').textContent=end?'סיימתי':'הבא';
+  $('sv-skip').hidden=!Q.one; $('sv-back').hidden=i===0;
   box.innerHTML='';
   A[Q.k]=A[Q.k]||[];
   Q.o.forEach(function(t){
-   var b=document.createElement('button'); b.type='button'; b.className='opt'; b.setAttribute('aria-pressed',A[Q.k].indexOf(t)>-1?'true':'false');
+   var b=document.createElement('button'); b.type='button'; b.className='opt'+(Q.one?' one':''); b.setAttribute('aria-pressed',A[Q.k].indexOf(t)>-1?'true':'false');
    b.innerHTML='<i aria-hidden="true"></i><span></span>'; b.lastChild.textContent=t;
-   b.addEventListener('click',function(){ var at=A[Q.k].indexOf(t); if(at>-1) A[Q.k].splice(at,1); else A[Q.k].push(t); b.setAttribute('aria-pressed',at>-1?'false':'true'); });
+   b.addEventListener('click',function(){
+    if(Q.one){ A[Q.k]=[t]; [].forEach.call(box.children,function(x){ x.setAttribute('aria-pressed',x===b?'true':'false'); }); setTimeout(forward,220); return; }
+    var at=A[Q.k].indexOf(t); if(at>-1) A[Q.k].splice(at,1); else A[Q.k].push(t); b.setAttribute('aria-pressed',at>-1?'false':'true');
+   });
    box.appendChild(b);
   });
   if(jump){ $('survey').scrollIntoView({block:'start',behavior:RM?'auto':'smooth'}); $('sv-q').focus({preventScroll:true}); }
  }
  function any(){ return QS.some(function(Q){ return (A[Q.k]&&A[Q.k].length)||W[Q.k]; }); }
- function save(){
-  if(saved||!WORKER_URL||!any()) return; saved=true;
-  var body={name:who.n||'',email:who.e||'',form:'survey',company:''}, finished=done;
+ // sent when finished, and when they leave or switch app midway; rid ties repeat sends to one person, so the fullest row can win
+ // plain text = no CORS preflight, which a page on its way out often loses (the Worker parses the body as JSON either way)
+ function save(leaving){
+  if(!WORKER_URL||!any()) return;
+  var body={rid:RID,name:who.n||'',email:who.e||'',form:'survey',finished:done?'כן':'',company:''}, finished=done;
   QS.forEach(function(Q){ body[Q.k]=(A[Q.k]||[]).join(' | '); if(Q.words) body[Q.k+'_words']=W[Q.k]||''; });
-  var send=function(left){ return fetch(WORKER_URL,{method:'POST',keepalive:true,headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){ if(!r.ok) throw 0;
-    if(finished&&!TEST){ try{ if(window.fbq) fbq('trackCustom','WebinarSurvey',{content_name:'meerafel-webinar'}); }catch(e){} } }).catch(function(){ if(left) setTimeout(function(){ send(left-1); },1500); }); };
+  var json=JSON.stringify(body); if(json===last) return; last=json;
+  if(leaving&&navigator.sendBeacon&&navigator.sendBeacon(WORKER_URL,new Blob([json],{type:'text/plain;charset=UTF-8'}))) return;
+  var send=function(left){ return fetch(WORKER_URL,{method:'POST',keepalive:true,headers:{'Content-Type':'text/plain;charset=UTF-8'},body:json}).then(function(r){ if(!r.ok) throw 0;
+    if(finished&&!TEST){ try{ if(window.fbq) fbq('trackCustom','WebinarSurvey',{content_name:'meerafel-webinar'}); }catch(e){} } }).catch(function(){ if(left) setTimeout(function(){ send(left-1); },1500); else if(last===json) last=''; }); };
   send(1);
  }
- function toWa(){ keepWords(); save(); $('survey').hidden=true; $('wa').hidden=false; $('wa-h').focus({preventScroll:true}); $('wa').scrollIntoView({block:'center'}); }
-
- $('sv-next').addEventListener('click',function(){ keepWords(); if(i===QS.length-1){ done=true; toWa(); return; } i++; show(true); });
+ function forward(){
+  keepWords();
+  if(i===QS.length-1){ done=true; save(); $('survey').hidden=true; $('sv-done').hidden=false; $('dn-h').focus({preventScroll:true}); $('sv-done').scrollIntoView({block:'center'}); return; }
+  i++; show(true);
+ }
+ $('sv-next').addEventListener('click',forward);
+ $('sv-skip').addEventListener('click',forward);
  $('sv-back').addEventListener('click',function(){ keepWords(); i--; show(true); });
- $('sv-skip').addEventListener('click',toWa);
- // leaving midway still keeps what they already answered
- addEventListener('pagehide',function(){ if(!$('survey').hidden){ keepWords(); save(); } });
+ function away(){ if(!done){ keepWords(); save(true); } }
+ addEventListener('pagehide',away);
+ document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='hidden') away(); });
  $('wa-btn').addEventListener('click',function(){ if(TEST) return; try{ if(window.fbq) fbq('trackCustom','JoinWhatsApp',{content_name:'meerafel-webinar'}); }catch(e){} try{ if(window.gtag) gtag('event','join_group',{group_id:'meerafel-webinar'}); }catch(e){} });
  show();
 
