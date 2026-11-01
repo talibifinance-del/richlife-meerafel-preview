@@ -5,7 +5,6 @@
 <html lang="he" dir="rtl">
 <head>
 
-<!-- End Google Analytics -->
 
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
@@ -750,20 +749,23 @@ html.mfx:not(.a11y-noanim):not(.pe-on) .rd .wd.lit { opacity:1; }
   if(!c2.checked){ c2.closest('.rf-c').classList.add('bad'); bad.push('אישור התקנון'); }
   msg.classList.remove('ok');
   if(bad.length){ msg.textContent='חסר: '+bad.join(', '); (f.querySelector('[aria-invalid="true"]')||f.querySelector('.rf-c.bad input')).focus(); return; }
-  if(!WORKER_URL){ msg.classList.add('ok'); msg.textContent='הטופס עוד בבדיקה ועדיין לא שומר פרטים.'; return; }
+  if(!WORKER_URL){ msg.classList.add('ok'); msg.textContent='הטופס עוד בבדיקה ועדיין לא שומר פרטים. עוברים לדף התודה...'; setTimeout(function(){ location.href='thank-you/index.html?demo=1'; },1400); return; }
   var btn=f.querySelector('#reg-btn'); btn.disabled=true; msg.textContent='שומרים לכם מקום...';
   fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n.value.trim(),email:m.value.trim(),phone:ph.value.trim(),consent:'כן',terms:'כן',company:''})})
-   .then(function(r){ if(!r.ok) throw 0; registered(); msg.classList.add('ok'); msg.textContent='נרשמתם! הקישור לשידור בדרך למייל שלכם.'; f.reset(); })
+   .then(function(r){ if(!r.ok) throw 0; msg.classList.add('ok'); msg.textContent='נרשמתם! עוברים לדף התודה...'; registered(n.value.trim(),m.value.trim()); })
    .catch(function(){ msg.textContent='משהו השתבש בשליחה. אפשר לנסות שוב בעוד רגע.'; })
    .then(function(){ btn.disabled=false; });
  });
- // one registration = one Lead in the pixel, and only after the save really succeeded (same as the birth-readiness quiz)
+ // one registration = one Lead in the pixel, after the save really succeeded. The thank-you page counts it, so a reload there counts nothing.
+ // No storage in this browser: count it here and give the pixel a moment before leaving.
  var sent=false;
- function registered(){
+ function registered(name,email){
   if(sent) return; sent=true;
-  var qp=new URLSearchParams(location.search); if(qp.has('demo')||qp.has('test')) return;
-  try{ if(window.fbq) fbq('track','Lead',{content_name:'meerafel-webinar'}); }catch(e){}
-  try{ if(window.gtag) gtag('event','sign_up',{method:'meerafel-webinar'}); }catch(e){}
+  var qs=location.search||'', go=function(){ location.href='thank-you/'+qs; };
+  try{ sessionStorage.setItem('mrf_reg',JSON.stringify({n:name,e:email})); go(); return; }catch(e){}
+  var qp=new URLSearchParams(qs);
+  if(!qp.has('demo')&&!qp.has('test')){ try{ if(window.fbq) fbq('track','Lead',{content_name:'meerafel-webinar'}); }catch(e){} try{ if(window.gtag) gtag('event','sign_up',{method:'meerafel-webinar'}); }catch(e){} }
+  setTimeout(go,500);
  }
 })();
 </script>
