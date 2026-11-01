@@ -4,7 +4,7 @@
    הטופס בדף ההרשמה מעביר לכאן אחרי שמירה מוצלחת.
    פיקסל 208911198828875: PageView תמיד. Lead (content_name=meerafel-webinar) רק למי שהגיע מהרשמה אמיתית, פעם אחת.
    WebinarSurvey אחרי שמירת השאלון, JoinWhatsApp בלחיצה על הקבוצה.
-   TODO: WORKER_URL לשמירת התשובות, WHATSAPP_LINK, תאריך ושעה
+   TODO: WORKER_URL לשמירת התשובות, תאריך ושעה
 ═══════════════════════════════════════════════════════════════ -->
 <html lang="he" dir="rtl">
 <head>
@@ -47,13 +47,20 @@ h1 { font-size:clamp(30px,8vw,40px); font-weight:900; line-height:1.15; color:va
 .opts { display:grid; gap:9px; }
 .opt { font:inherit; font-size:16px; font-weight:600; line-height:1.3; color:var(--ink); text-align:right; background:#fff; border:2px solid #fff; border-radius:12px; padding:11px 14px; min-height:46px; cursor:pointer; transition:border-color .15s, background .15s; }
 @media (hover:hover) { .opt:hover { border-color:#244a37; } }
+.opt { display:flex; align-items:center; gap:10px; }
+.opt i { flex:none; width:22px; height:22px; border:2px solid #9db3a6; border-radius:7px; display:grid; place-items:center; font-style:normal; font-size:14px; font-weight:900; color:#fff; }
 .opt[aria-pressed="true"] { border-color:#244a37; background:var(--green-soft); }
+.opt[aria-pressed="true"] i { background:#244a37; border-color:#244a37; }
+.opt[aria-pressed="true"] i::before { content:"✓"; }
+.hint { font-size:15px; font-weight:600; text-align:center; margin-top:-5px; }
+.words { display:grid; gap:6px; font-size:15.5px; font-weight:800; }
 .opt:focus-visible, .go:focus-visible, .skip:focus-visible, textarea:focus-visible { outline:3px solid #244a37; outline-offset:2px; }
-textarea { font:inherit; font-size:17px; width:100%; min-height:112px; resize:vertical; background:#fff; color:var(--ink); border:2px solid #fff; border-radius:12px; padding:13px 14px; }
+textarea { font:inherit; font-size:17px; font-weight:500; width:100%; min-height:76px; resize:vertical; background:#fff; color:var(--ink); border:2px solid #fff; border-radius:12px; padding:13px 14px; }
 .nav { display:grid; justify-items:center; gap:2px; }
 .skip { font:inherit; font-size:15px; font-weight:600; color:var(--sage-ink); background:none; border:0; text-decoration:underline; text-underline-offset:3px; cursor:pointer; padding:6px 2px; }
 .go { display:block; width:100%; font:inherit; font-size:20px; font-weight:900; color:#fff; text-align:center; text-decoration:none; background:#244a37; border:0; border-radius:99px; padding:15px 18px; box-shadow:0 6px 0 #16301f; cursor:pointer; }
-.go.wa { background:var(--wa); box-shadow:0 6px 0 #0f6a3b; }
+.go.wa { display:flex; align-items:center; justify-content:center; gap:11px; background:var(--wa); box-shadow:0 6px 0 #0f6a3b; }
+.go.wa svg { flex:none; width:32px; height:32px; fill:#fff; }
 .go[aria-disabled="true"] { opacity:.6; cursor:default; }
 .small { font-size:15px; text-align:center; font-weight:500; text-wrap:balance; }
 .testnote { background:#fff6da; color:#5c4a12; border-radius:12px; padding:10px 12px; font-size:14px; font-weight:700; text-align:center; }
@@ -78,13 +85,14 @@ canvas#conf { position:fixed; inset:0; width:100%; height:100%; pointer-events:n
 
  <section class="card" id="survey" aria-labelledby="sv-h">
   <h2 id="sv-h">אני רוצה להכיר אתכם</h2>
-  <p class="lead">5 שאלות קצרות, כדי שבהדרכה אדבר על מה שבאמת מעסיק אתכם</p>
+  <p class="lead">4 שאלות קצרות, כדי שבהדרכה אדבר על מה שבאמת מעסיק אתכם</p>
   <div class="bar" aria-hidden="true"><i id="sv-bar"></i></div>
   <p class="count" id="sv-count"></p>
   <p class="q" id="sv-q" tabindex="-1" aria-live="polite"></p>
+  <p class="hint">אפשר לסמן כמה שמתאים</p>
   <div class="opts" id="sv-opts"></div>
-  <textarea id="sv-open" aria-labelledby="sv-q" maxlength="600" placeholder="כתבו כאן במילים שלכם" hidden></textarea>
-  <button class="go" type="button" id="sv-next" hidden>סיימתי</button>
+  <label class="words" id="sv-words-l"><span>ובמילים שלכם?</span><textarea id="sv-words" maxlength="600" placeholder="כתבו כאן איך שבא לכם (לא חובה)"></textarea></label>
+  <button class="go" type="button" id="sv-next">הבא</button>
   <div class="nav">
    <button class="skip" type="button" id="sv-skip">דלגו ישר לקבוצת הוואטסאפ</button>
    <button class="skip" type="button" id="sv-back" hidden>חזרה לשאלה הקודמת</button>
@@ -94,72 +102,80 @@ canvas#conf { position:fixed; inset:0; width:100%; height:100%; pointer-events:n
  <section class="card" id="wa" aria-labelledby="wa-h" hidden>
   <h2 id="wa-h" tabindex="-1">תודה! ועוד צעד אחרון 👇</h2>
   <p class="lead">הצטרפו לקבוצת הוואטסאפ של ההדרכה. שם אשלח לכם תזכורות ואת הקישור לשידור, כדי שלא תפספסו</p>
-  <a class="go wa" id="wa-btn" href="#" target="_blank" rel="noopener">הצטרפו לקבוצה בוואטסאפ</a>
+  <a class="go wa" id="wa-btn" href="https://chat.whatsapp.com/BSDy5FUdomuDCXgnSEaPnc?mode=gi_t" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>הצטרפו לקבוצה בוואטסאפ</a>
   <p class="small">רק אני כותבת בקבוצה, בלי הצפות</p>
  </section>
 
- <p class="testnote" id="testnote" hidden>מצב בדיקה: התשובות לא נשמרות וקישור הקבוצה עוד לא מחובר</p>
+ <p class="testnote" id="testnote" hidden>מצב בדיקה: התשובות עדיין לא נשמרות</p>
  <p class="foot">טלי בנימינוב שרעבי · RichLife · <a href="../accessibility/">הצהרת נגישות</a></p>
 </main>
 
 <script>
-/* thank-you flow: count the registration once, ask 5 quick questions, then hand over the WhatsApp group */
+/* thank-you flow: count the registration once, ask 4 quick questions (several answers + their own words), then hand over the WhatsApp group */
 (function(){
- var WORKER_URL='';    // same Worker as the registration form; empty = answers are not saved
- var WHATSAPP_LINK=''; // the group's invite link
+ var WORKER_URL=''; // same Worker as the registration form; empty = answers are not saved
  var QS=[
-  {k:'today',q:'מה הכי מתאר אתכם היום?',o:['המשכורת נכנסת, ואתם לא יודעים לאן היא הולכת','מכניסים יפה, ובכל זאת בסוף החודש שוב על הקשקש','כל הזמן נכנסים למינוס ולא מצליחים לחסוך','יש כסף שיושב בעו"ש, ואתם לא יודעים מה לעשות איתו','יש השקעות או קופות, ואתם בערפל לגבי מה שקורה שם']},
-  {k:'want',q:'מה הכי הייתם רוצים לשנות?',o:['לדעת לאן הכסף הולך כשהוא נכנס','לחסוך כל חודש באופן קבוע','שהכסף יעבוד בשבילכם','לקנות דברים בכיף, בלי רגשות אשמה','להגיע מוכנים למעבר דירה, חתונה או הרחבת המשפחה']},
-  {k:'block',q:'מה הכי עוצר אתכם עד היום?',o:['לא יודעים מאיפה להתחיל','מפחדים לקבל החלטה לא נכונה ולהפסיד','שומעים המון עצות, ובסוף לא עושים כלום','יודעים מה צריך, ופשוט לא מצליחים ליישם','לא נשאר כסף לחסוך או להשקיע']},
-  {k:'stage',q:'איפה אתם עכשיו בחיים?',o:['לבד, בלי ילדים','בזוגיות, בלי ילדים','לקראת חתונה, מעבר דירה או ילד','הורים']},
-  {k:'ask',q:'מה השאלה האחת שהכי הייתם רוצים שאענה עליה בהדרכה?',open:true}
+  {k:'today',q:'איפה אתם נמצאים היום?',words:true,o:['המשכורת נכנסת, ואתם לא יודעים לאן היא הולכת','מכניסים יפה, ובכל זאת בסוף החודש שוב על הקשקש','כל הזמן נכנסים למינוס ולא מצליחים לחסוך','יש כסף שיושב בעו"ש, ואתם לא יודעים מה לעשות איתו','יש השקעות או קופות, ואתם בערפל לגבי מה שקורה שם']},
+  {k:'block',q:'מה הכי מפריע לכם?',words:true,o:['לא יודעים מאיפה להתחיל','מפחדים לקבל החלטה לא נכונה ולהפסיד','שומעים המון עצות, ובסוף לא עושים כלום','יודעים מה צריך, ופשוט לא מצליחים ליישם','לא נשאר כסף לחסוך או להשקיע']},
+  {k:'want',q:'עם מה הייתם רוצים לצאת מההדרכה?',words:true,o:['לדעת לאן הכסף שלכם הולך','איך לחסוך כל חודש באופן קבוע','איך להתחיל להשקיע בלי לפחד להפסיד','איך ליהנות מהכסף בלי רגשות אשמה','איך נראית תוכנית כלכלית אמיתית','להגיע מוכנים למעבר דירה, חתונה או הרחבת המשפחה']},
+  {k:'stage',q:'באיזה שלב בחיים אתם?',o:['לבד, בלי ילדים','בזוגיות, בלי ילדים','לקראת חתונה, מעבר דירה או ילד','הורים']}
  ];
  var $=function(id){ return document.getElementById(id); };
  var qp=new URLSearchParams(location.search), TEST=qp.has('demo')||qp.has('test');
- var who={}, A={}, i=0, saved=false;
+ var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+ var who={}, A={}, W={}, i=0, saved=false, done=false;
 
- // the landing form leaves a one-time note: a reload or a direct visit counts nothing
- try{ var raw=sessionStorage.getItem('mrf_reg'); if(raw){ who=JSON.parse(raw)||{}; sessionStorage.removeItem('mrf_reg');
-   if(!TEST){ try{ if(window.fbq) fbq('track','Lead',{content_name:'meerafel-webinar'}); }catch(e){} try{ if(window.gtag) gtag('event','sign_up',{method:'meerafel-webinar'}); }catch(e){} } } }catch(e){}
+ // the landing form leaves a note for this tab: the Lead counts once, and a reload still knows whose answers these are
+ try{ var raw=sessionStorage.getItem('mrf_reg'); if(raw){ who=JSON.parse(raw)||{};
+   if(!who.counted){ who.counted=1; sessionStorage.setItem('mrf_reg',JSON.stringify(who));
+    if(!TEST){ try{ if(window.fbq) fbq('track','Lead',{content_name:'meerafel-webinar'}); }catch(e){} try{ if(window.gtag) gtag('event','sign_up',{method:'meerafel-webinar'}); }catch(e){} } } } }catch(e){}
 
- if(!WORKER_URL||!WHATSAPP_LINK) $('testnote').hidden=false;
- if(WHATSAPP_LINK) $('wa-btn').href=WHATSAPP_LINK; else $('wa-btn').addEventListener('click',function(e){ e.preventDefault(); });
+ if(!WORKER_URL) $('testnote').hidden=false;
 
- function show(){
-  var Q=QS[i], box=$('sv-opts'), ta=$('sv-open'), next=$('sv-next');
+ function keepWords(){ var Q=QS[i]; if(Q&&Q.words) W[Q.k]=$('sv-words').value.trim(); }
+ function show(jump){
+  var Q=QS[i], box=$('sv-opts'), last=i===QS.length-1;
   $('sv-count').textContent='שאלה '+(i+1)+' מתוך '+QS.length;
   $('sv-bar').style.width=((i+1)/QS.length*100)+'%';
   $('sv-q').textContent=Q.q;
-  box.innerHTML=''; box.hidden=!!Q.open; ta.hidden=!Q.open; next.hidden=!Q.open; $('sv-back').hidden=i===0;
-  if(Q.open){ ta.value=A[Q.k]||''; return; }
+  $('sv-words-l').hidden=!Q.words; $('sv-words').value=W[Q.k]||'';
+  $('sv-next').textContent=last?'סיימתי':'הבא'; $('sv-back').hidden=i===0;
+  box.innerHTML='';
+  A[Q.k]=A[Q.k]||[];
   Q.o.forEach(function(t){
-   var b=document.createElement('button'); b.type='button'; b.className='opt'; b.textContent=t; b.setAttribute('aria-pressed',A[Q.k]===t?'true':'false');
-   b.addEventListener('click',function(){ A[Q.k]=t; b.setAttribute('aria-pressed','true'); setTimeout(function(){ i++; show(); $('sv-q').focus({preventScroll:true}); },180); });
+   var b=document.createElement('button'); b.type='button'; b.className='opt'; b.setAttribute('aria-pressed',A[Q.k].indexOf(t)>-1?'true':'false');
+   b.innerHTML='<i aria-hidden="true"></i><span></span>'; b.lastChild.textContent=t;
+   b.addEventListener('click',function(){ var at=A[Q.k].indexOf(t); if(at>-1) A[Q.k].splice(at,1); else A[Q.k].push(t); b.setAttribute('aria-pressed',at>-1?'false':'true'); });
    box.appendChild(b);
   });
+  if(jump){ $('survey').scrollIntoView({block:'start',behavior:RM?'auto':'smooth'}); $('sv-q').focus({preventScroll:true}); }
  }
- function save(done){
-  if(saved||!WORKER_URL||(!done&&!Object.keys(A).length)) return; saved=true;
-  var body={name:who.n||'',email:who.e||'',today:A.today||'',want:A.want||'',block:A.block||'',stage:A.stage||'',ask:A.ask||'',form:'survey',company:''};
+ function any(){ return QS.some(function(Q){ return (A[Q.k]&&A[Q.k].length)||W[Q.k]; }); }
+ function save(){
+  if(saved||!WORKER_URL||!any()) return; saved=true;
+  var body={name:who.n||'',email:who.e||'',form:'survey',company:''}, finished=done;
+  QS.forEach(function(Q){ body[Q.k]=(A[Q.k]||[]).join(' | '); if(Q.words) body[Q.k+'_words']=W[Q.k]||''; });
   var send=function(left){ return fetch(WORKER_URL,{method:'POST',keepalive:true,headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){ if(!r.ok) throw 0;
-    if(done&&!TEST){ try{ if(window.fbq) fbq('trackCustom','WebinarSurvey',{content_name:'meerafel-webinar'}); }catch(e){} } }).catch(function(){ if(left) setTimeout(function(){ send(left-1); },1500); }); };
+    if(finished&&!TEST){ try{ if(window.fbq) fbq('trackCustom','WebinarSurvey',{content_name:'meerafel-webinar'}); }catch(e){} } }).catch(function(){ if(left) setTimeout(function(){ send(left-1); },1500); }); };
   send(1);
  }
- function toWa(done){ save(done); $('survey').hidden=true; $('wa').hidden=false; $('wa-h').focus({preventScroll:true}); $('wa').scrollIntoView({block:'center'}); }
+ function toWa(){ keepWords(); save(); $('survey').hidden=true; $('wa').hidden=false; $('wa-h').focus({preventScroll:true}); $('wa').scrollIntoView({block:'center'}); }
 
- $('sv-next').addEventListener('click',function(){ var v=$('sv-open').value.trim(); if(v) A.ask=v; toWa(true); });
- $('sv-back').addEventListener('click',function(){ var Q=QS[i]; if(Q.open){ var v=$('sv-open').value.trim(); if(v) A[Q.k]=v; } i--; show(); });
- $('sv-skip').addEventListener('click',function(){ var Q=QS[i]; if(Q.open){ var v=$('sv-open').value.trim(); if(v) A[Q.k]=v; } toWa(false); });
+ $('sv-next').addEventListener('click',function(){ keepWords(); if(i===QS.length-1){ done=true; toWa(); return; } i++; show(true); });
+ $('sv-back').addEventListener('click',function(){ keepWords(); i--; show(true); });
+ $('sv-skip').addEventListener('click',toWa);
+ // leaving midway still keeps what they already answered
+ addEventListener('pagehide',function(){ if(!$('survey').hidden){ keepWords(); save(); } });
  $('wa-btn').addEventListener('click',function(){ if(TEST) return; try{ if(window.fbq) fbq('trackCustom','JoinWhatsApp',{content_name:'meerafel-webinar'}); }catch(e){} try{ if(window.gtag) gtag('event','join_group',{group_id:'meerafel-webinar'}); }catch(e){} });
  show();
 
  // one short confetti burst, no sound; skipped for reduced motion
  (function(){
-  var c=$('conf'), RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var c=$('conf');
   if(RM||document.documentElement.classList.contains('a11y-noanim')){ c.remove(); return; }
-  var x=c.getContext('2d'), W=c.width=innerWidth, H=c.height=innerHeight, col=['#2f7d55','#a9c3b3','#244a37','#f2c14e','#ffffff'], P=[], t0=performance.now();
-  for(var n=0;n<90;n++) P.push({x:W/2,y:H*.22,vx:(Math.random()-.5)*11,vy:-Math.random()*9-2,s:5+Math.random()*6,c:col[n%5],r:Math.random()*6});
-  (function f(t){ var e=t-t0; x.clearRect(0,0,W,H); P.forEach(function(p){ p.vy+=.22; p.x+=p.vx; p.y+=p.vy; p.vx*=.99; p.r+=.15; x.globalAlpha=Math.max(0,1-e/2200); x.fillStyle=p.c; x.save(); x.translate(p.x,p.y); x.rotate(p.r); x.fillRect(-p.s/2,-p.s/3,p.s,p.s*.66); x.restore(); });
+  var x=c.getContext('2d'), W2=c.width=innerWidth, H=c.height=innerHeight, col=['#2f7d55','#a9c3b3','#244a37','#f2c14e','#ffffff'], P=[], t0=performance.now();
+  for(var n=0;n<90;n++) P.push({x:W2/2,y:H*.22,vx:(Math.random()-.5)*11,vy:-Math.random()*9-2,s:5+Math.random()*6,c:col[n%5],r:Math.random()*6});
+  (function f(t){ var e=t-t0; x.clearRect(0,0,W2,H); P.forEach(function(p){ p.vy+=.22; p.x+=p.vx; p.y+=p.vy; p.vx*=.99; p.r+=.15; x.globalAlpha=Math.max(0,1-e/2200); x.fillStyle=p.c; x.save(); x.translate(p.x,p.y); x.rotate(p.r); x.fillRect(-p.s/2,-p.s/3,p.s,p.s*.66); x.restore(); });
    if(e<2200) requestAnimationFrame(f); else c.remove(); })(t0);
  })();
 })();
